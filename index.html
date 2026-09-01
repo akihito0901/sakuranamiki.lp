@@ -253,58 +253,6 @@
             return ref;
         };
 
-        /* ─── ⑦.6 予約枠セクション ─── */
-        const BonusSection = () => {
-            const ref = useFadeUp();
-            return (
-                <div ref={ref} className="fade-up w-full bg-[#FFF8F0] border-t-4 border-orange-400">
-                    <div className="px-6 pt-12 pb-10 text-center">
-
-                        {/* 残り枠バッジ */}
-                        <div className="mb-6">
-                            <span className="animate-badge-warn inline-block text-white text-xs font-black px-4 py-1.5 rounded-full tracking-widest shadow-md">
-                                今月のご新規様 受付中
-                            </span>
-                        </div>
-
-                        {/* メインコピー */}
-                        <p className="font-mincho text-skin-dark font-bold text-lg mb-2 leading-relaxed">
-                            おかげさまで、たくさんの方に選ばれています！
-                        </p>
-                        <p className="font-mincho text-red-600 font-black text-2xl mb-6 leading-relaxed">
-                            ご新規様のご予約も<br />好評受付中です
-                        </p>
-
-                        {/* 混雑の様子（動画） */}
-                        <div className="mb-7">
-                            <p className="text-[10px] text-orange-500 font-bold tracking-widest mb-2 text-center">▼ 実際の院内の様子をご覧ください</p>
-                            <div className="rounded-2xl shadow-lg overflow-hidden">
-                                <video src="./images/congestion-video.mp4" poster="./images/congestion-poster.webp" autoPlay muted loop playsInline className="w-full h-64 object-cover" />
-                            </div>
-                        </div>
-
-                        {/* サブテキスト */}
-                        <div className="bg-white rounded-2xl px-5 py-5 mb-7 shadow-sm border border-orange-100 text-left space-y-3 max-w-xs mx-auto">
-                            <p className="flex items-start gap-2 text-sm text-skin-dark font-bold">
-                                <span className="text-orange-400 mt-0.5 flex-shrink-0">▶</span>
-                                人気の夕方・土曜は<br />早めに埋まります
-                            </p>
-                            <p className="flex items-start gap-2 text-sm text-skin-dark font-bold">
-                                <span className="text-orange-400 mt-0.5 flex-shrink-0">▶</span>
-                                院長が一人で担当しているため<br />予約数を限定しています
-                            </p>
-                        </div>
-
-                        <p className="font-mincho text-red-600 font-black text-xl mb-7">
-                            ご予約はお早めに！
-                        </p>
-
-                        <LineCTA />
-                    </div>
-                </div>
-            );
-        };
-
         /* ─── LINE CTA ─── */
         const LineCTA = ({ className = "" }) => {
             const ref = useRef(null);
@@ -360,28 +308,6 @@
                     <img src="./images/hero-new-image-v2.png" alt="当院はここが違います" className="w-full h-auto block" />
                 </div>
             </div>
-        );
-
-        /* ─── ①.5 予約状況のお知らせ ─── */
-        const HeroAvailabilityNotice = () => (
-            <section className="w-full bg-gradient-to-r from-[#FFF4EB] via-[#FFF9F4] to-[#FFF4EB] border-y border-orange-200 px-5 py-6 text-center" aria-label="現在の予約状況">
-                <p className="inline-flex items-center gap-2 text-orange-700 text-xs font-black tracking-wider mb-3">
-                    <span className="block w-8 h-px bg-orange-300" aria-hidden="true"></span>
-                    おかげさまでご好評いただいています
-                    <span className="block w-8 h-px bg-orange-300" aria-hidden="true"></span>
-                </p>
-                <p className="font-mincho text-skin-dark text-[17px] font-bold leading-relaxed">
-                    たくさんの方に選ばれています！
-                </p>
-                <p className="font-mincho text-red-600 text-[19px] font-black leading-relaxed mt-1">
-                    ご新規様のご予約も<br />
-                    好評受付中です。
-                </p>
-                <div className="mt-4 rounded-2xl shadow-md overflow-hidden max-w-xs mx-auto">
-                    <video src="./images/congestion-video.mp4" poster="./images/congestion-poster.webp" autoPlay muted loop playsInline className="w-full h-44 object-cover" />
-                </div>
-                <LineCTA className="mt-5" />
-            </section>
         );
 
         /* ─── ② 悩みの共感 ─── */
@@ -821,7 +747,6 @@
                     {showPopup && <CampaignPopup onClose={() => setShowPopup(false)} />}
                     <StickyHeader />
                     <Headline />
-                    <HeroAvailabilityNotice />
                     <EmpathySection />
                     <ProblemSection />
                     <CauseSection />
@@ -831,7 +756,6 @@
                     <ReviewsSection />
                     <ComparisonSection />
                     <FeatureSection />
-                    <BonusSection />
                     <QASection />
                     <FinalCTA />
                     <Footer />
