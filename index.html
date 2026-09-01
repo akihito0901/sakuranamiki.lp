@@ -312,11 +312,20 @@
 
         const HeroFollowup = () => (
             <div className="w-full bg-[#FCF8F5]">
-                <img
-                    src="./images/hero-followup-difference.png"
-                    alt="そのつらさ、もう我慢しなくて大丈夫です"
+                <video
+                    src="./images/hero-followup-difference.mp4"
+                    poster="./images/hero-followup-difference-poster.webp"
+                    aria-label="当院の特徴と施術方針の紹介動画"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    disablePictureInPicture
                     className="w-full h-auto block"
-                />
+                >
+                    お使いのブラウザは動画の再生に対応していません。
+                </video>
             </div>
         );
 
