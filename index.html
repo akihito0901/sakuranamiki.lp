@@ -310,6 +310,16 @@
             </div>
         );
 
+        const HeroFollowup = () => (
+            <div className="w-full bg-[#FCF8F5]">
+                <img
+                    src="./images/hero-followup-difference.png"
+                    alt="そのつらさ、もう我慢しなくて大丈夫です"
+                    className="w-full h-auto block"
+                />
+            </div>
+        );
+
         /* ─── ② 悩みの共感 ─── */
         const EmpathySection = () => {
             const ref = useFadeUp();
@@ -747,6 +757,7 @@
                     {showPopup && <CampaignPopup onClose={() => setShowPopup(false)} />}
                     <StickyHeader />
                     <Headline />
+                    <HeroFollowup />
                     <EmpathySection />
                     <ProblemSection />
                     <CauseSection />
