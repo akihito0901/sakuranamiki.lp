@@ -254,7 +254,7 @@
         };
 
         /* ─── LINE CTA ─── */
-        const LineCTA = ({ className = "" }) => {
+        const LineCTA = ({ className = "", flush = false }) => {
             const ref = useRef(null);
             const [fired, setFired] = useState(false);
 
@@ -268,7 +268,7 @@
             }, [fired]);
 
             return (
-                <div ref={ref} className={`w-full px-4 ${fired ? 'cta-line-animated' : ''} ${className}`}>
+                <div ref={ref} className={`w-full ${flush ? '' : 'px-4'} ${fired ? 'cta-line-animated' : ''} ${className}`}>
                     <a href="https://lin.ee/uqCRkRL" onClick={() => window.fbq('track', 'Lead')}
                        className="block w-full bg-gradient-to-br from-[#06C755] to-[#04a044] text-white font-bold py-5 rounded-xl shadow-[0_10px_30px_rgba(6,199,85,0.4)] hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(6,199,85,0.5)] active:scale-[0.97] transition-all relative overflow-hidden group">
                         <div className="absolute inset-0 w-1/4 h-full bg-white/20 skew-x-12 -ml-10 group-hover:ml-[120%] transition-all duration-700"></div>
@@ -327,6 +327,32 @@
                     お使いのブラウザは動画の再生に対応していません。
                 </video>
             </div>
+        );
+
+        const HeroBookingCTA = () => (
+            <section className="w-full bg-[#FCF8F5] px-4 pt-5 pb-8" aria-label="LINEで予約状況を確認">
+                <div className="text-center mb-4">
+                    <span className="inline-block text-[11px] font-bold tracking-[0.16em] text-skin-rose border-b border-skin-rose/40 pb-1">
+                        ご予約を検討中の方へ
+                    </span>
+                    <h2 className="mt-3 text-[21px] sm:text-2xl font-black leading-relaxed text-skin-dark">
+                        直近の空き状況を<br />LINEで確認できます
+                    </h2>
+                    <p className="mt-2 text-[12px] leading-relaxed text-skin-gray">
+                        空き状況の確認だけでも大丈夫です。<br />ご希望の日時をトーク画面からお送りください。
+                    </p>
+                </div>
+
+                <LineCTA flush />
+
+                <div className="mt-4 flex items-center justify-center gap-2 text-[10px] font-bold text-skin-gray">
+                    <span className="flex items-center gap-1"><i className="fas fa-check-circle text-[#06C755]"></i>24時間受付</span>
+                    <span className="w-px h-3 bg-skin-blush"></span>
+                    <span className="flex items-center gap-1"><i className="fas fa-check-circle text-[#06C755]"></i>LINEで完結</span>
+                    <span className="w-px h-3 bg-skin-blush"></span>
+                    <span className="flex items-center gap-1"><i className="fas fa-check-circle text-[#06C755]"></i>確認だけでもOK</span>
+                </div>
+            </section>
         );
 
         /* ─── ② 悩みの共感 ─── */
@@ -767,6 +793,7 @@
                     <StickyHeader />
                     <Headline />
                     <HeroFollowup />
+                    <HeroBookingCTA />
                     <EmpathySection />
                     <ProblemSection />
                     <CauseSection />
