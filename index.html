@@ -49,7 +49,20 @@
          */
         (function () {
             var q = (new URLSearchParams(location.search).get('v') || '').toLowerCase();
-            var variant = (q === 'b') ? 'b' : 'a';
+            var variant;
+            if (q === 'a' || q === 'b') {
+                // URLで指定があればそれに従う（表示確認・共有用）
+                variant = q;
+            } else {
+                // 指定なし＝広告からの通常の流入。半分ずつ振り分ける。
+                // 一度決めた結果は保存し、同じ人には常に同じものを見せる
+                // （再訪で別パターンが出ると計測が壊れるため）
+                try { variant = localStorage.getItem('ab_hero'); } catch (e) { variant = null; }
+                if (variant !== 'a' && variant !== 'b') {
+                    variant = Math.random() < 0.5 ? 'a' : 'b';
+                    try { localStorage.setItem('ab_hero', variant); } catch (e) {}
+                }
+            }
             var hero = (variant === 'b')
                 ? './images/hero-ab-b-authority.webp'
                 : './images/hero-ab-a-empathy.webp';
