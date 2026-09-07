@@ -50,18 +50,19 @@
         (function () {
             var q = (new URLSearchParams(location.search).get('v') || '').toLowerCase();
             var variant = (q === 'b') ? 'b' : 'a';
-            var poster = (variant === 'b')
-                ? './images/hero-ab-b-authority-poster.webp'
-                : './images/hero-ab-a-empathy-poster.webp';
+            var hero = (variant === 'b')
+                ? './images/hero-ab-b-authority.webp'
+                : './images/hero-ab-a-empathy.webp';
 
             window.AB_VARIANT = variant;
             document.documentElement.setAttribute('data-variant', variant);
 
-            // ヒーローは画面最上部＝表示速度に直結するので、選ばれた方だけ先読みする
+            // ヒーローは画面最上部＝表示速度に直結するので、選ばれた方だけ先読みする。
+            // このLPはReactが組み立てる方式で初回描画が遅いため、先読みの効果が大きい。
             var link = document.createElement('link');
             link.rel = 'preload';
             link.as = 'image';
-            link.href = poster;
+            link.href = hero;
             document.head.appendChild(link);
 
             // 「どちらを見たか」を計測側へ送る
@@ -347,14 +348,12 @@
         /* パターンは URL の ?v= で決まる。切り替えロジックは <head> のスクリプト側。 */
         const HERO_VARIANTS = {
             a: {
-                src: './images/hero-ab-a-empathy.mp4',
-                poster: './images/hero-ab-a-empathy-poster.webp',
-                label: '何件通っても繰り返す首・肩のつらさに丁寧に向き合う、当院の紹介',
+                src: './images/hero-ab-a-empathy.webp',
+                alt: '「また同じかも…」そう思いながらこのページを見ているあなたへ。何件通っても繰り返した首・肩のつらさに、今度こそ丁寧に向き合います。初回限定2,980円',
             },
             b: {
-                src: './images/hero-ab-b-authority.mp4',
-                poster: './images/hero-ab-b-authority-poster.webp',
-                label: 'Google口コミ5.0。何件通っても変わらなかった方から選ばれている当院の紹介',
+                src: './images/hero-ab-b-authority.webp',
+                alt: '「ここなら任せられる」そう思える整骨院へ。Google口コミ5.0。何件通っても変わらなかった方から選ばれています。初回限定2,980円',
             },
         };
 
@@ -363,20 +362,15 @@
             return (
                 <div className="pt-12 bg-white">
                     <div className="w-full">
-                        <video
+                        <img
                             src={hero.src}
-                            poster={hero.poster}
-                            aria-label={hero.label}
-                            autoPlay
-                            muted
-                            loop
-                            playsInline
-                            preload="auto"
-                            disablePictureInPicture
+                            alt={hero.alt}
+                            width="940"
+                            height="1672"
+                            fetchpriority="high"
+                            decoding="async"
                             className="w-full h-auto block"
-                        >
-                            お使いのブラウザは動画の再生に対応していません。
-                        </video>
+                        />
                     </div>
                 </div>
             );
