@@ -37,6 +37,48 @@
             src="https://www.facebook.com/tr?id=752934397862087&ev=PageView&noscript=1" /></noscript>
     <!-- End Meta Pixel Code -->
 
+    <!-- ヒーロー動画のA/Bテスト -->
+    <script>
+        /*
+         * URLの ?v= でヒーローを出し分ける。
+         *   ?v=a … 共感訴求（「また同じかも…」）
+         *   ?v=b … 権威訴求（Google口コミ★5.0）
+         * 広告のリンク先URLごとにパターンを固定する方式なので、
+         * ランダム割り当てはしない（同じ人には常に同じものが出る）。
+         * 指定なし（オーガニック流入・直打ち・広告以外）は a を表示。
+         */
+        (function () {
+            var q = (new URLSearchParams(location.search).get('v') || '').toLowerCase();
+            var variant = (q === 'b') ? 'b' : 'a';
+            var poster = (variant === 'b')
+                ? './images/hero-ab-b-authority-poster.webp'
+                : './images/hero-ab-a-empathy-poster.webp';
+
+            window.AB_VARIANT = variant;
+            document.documentElement.setAttribute('data-variant', variant);
+
+            // ヒーローは画面最上部＝表示速度に直結するので、選ばれた方だけ先読みする
+            var link = document.createElement('link');
+            link.rel = 'preload';
+            link.as = 'image';
+            link.href = poster;
+            document.head.appendChild(link);
+
+            // 「どちらを見たか」を計測側へ送る
+            window.addEventListener('load', function () {
+                if (window.fbq) window.fbq('trackCustom', 'LPView', { variant: variant });
+                if (window.clarity) window.clarity('set', 'ab_variant', variant);
+            });
+
+            // LINEクリック時のLeadにもパターンを付ける。
+            // 既存の fbq('track','Lead') と互換なので、過去データとの連続性は保たれる。
+            window.trackLead = function () {
+                if (window.fbq) window.fbq('track', 'Lead', { content_name: 'hero_' + variant });
+            };
+        })();
+    </script>
+    <!-- End A/B -->
+
     <!-- React & ReactDOM -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -269,7 +311,7 @@
 
             return (
                 <div ref={ref} className={`w-full ${flush ? '' : 'px-4'} ${fired ? 'cta-line-animated' : ''} ${className}`}>
-                    <a href="https://lin.ee/uqCRkRL" onClick={() => window.fbq('track', 'Lead')}
+                    <a href="https://lin.ee/uqCRkRL" onClick={() => window.trackLead()}
                        className="block w-full bg-gradient-to-br from-[#06C755] to-[#04a044] text-white font-bold py-5 rounded-xl shadow-[0_10px_30px_rgba(6,199,85,0.4)] hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(6,199,85,0.5)] active:scale-[0.97] transition-all relative overflow-hidden group">
                         <div className="absolute inset-0 w-1/4 h-full bg-white/20 skew-x-12 -ml-10 group-hover:ml-[120%] transition-all duration-700"></div>
                         <div className="flex flex-col items-center gap-1 relative z-10">
@@ -301,14 +343,44 @@
             </div>
         );
 
-        /* ─── ① ヘッドライン ─── */
-        const Headline = () => (
-            <div className="pt-12 bg-white">
-                <div className="w-full">
-                    <img src="./images/hero-new-image-v2.png" alt="当院はここが違います" className="w-full h-auto block" />
+        /* ─── ① ヘッドライン（A/Bテスト対象） ─── */
+        /* パターンは URL の ?v= で決まる。切り替えロジックは <head> のスクリプト側。 */
+        const HERO_VARIANTS = {
+            a: {
+                src: './images/hero-ab-a-empathy.mp4',
+                poster: './images/hero-ab-a-empathy-poster.webp',
+                label: '何件通っても繰り返す首・肩のつらさに丁寧に向き合う、当院の紹介',
+            },
+            b: {
+                src: './images/hero-ab-b-authority.mp4',
+                poster: './images/hero-ab-b-authority-poster.webp',
+                label: 'Google口コミ5.0。何件通っても変わらなかった方から選ばれている当院の紹介',
+            },
+        };
+
+        const Headline = () => {
+            const hero = HERO_VARIANTS[window.AB_VARIANT] || HERO_VARIANTS.a;
+            return (
+                <div className="pt-12 bg-white">
+                    <div className="w-full">
+                        <video
+                            src={hero.src}
+                            poster={hero.poster}
+                            aria-label={hero.label}
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                            preload="auto"
+                            disablePictureInPicture
+                            className="w-full h-auto block"
+                        >
+                            お使いのブラウザは動画の再生に対応していません。
+                        </video>
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        };
 
         const HeroFollowup = () => (
             <div className="w-full bg-[#FCF8F5]">
@@ -732,7 +804,7 @@
                         <i className="fas fa-phone-alt text-xl mr-2"></i>
                         <span>今すぐ電話で<br />来店予約</span>
                     </a>
-                    <a href="https://lin.ee/uqCRkRL" onClick={() => window.fbq('track', 'Lead')}
+                    <a href="https://lin.ee/uqCRkRL" onClick={() => window.trackLead()}
                        className="flex-1 flex items-center justify-center bg-[#06C755] text-white rounded-full py-3 shadow-md active:scale-95 transition-all text-[13px] font-bold leading-tight text-center">
                         <i className="fab fa-line text-2xl mr-2"></i>
                         <span>LINEで空き状況を<br />今すぐ確認</span>
