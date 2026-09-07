@@ -71,11 +71,33 @@
                 if (window.clarity) window.clarity('set', 'ab_variant', variant);
             });
 
-            // LINEクリック時のLeadにもパターンを付ける。
-            // 既存の fbq('track','Lead') と互換なので、過去データとの連続性は保たれる。
-            window.trackLead = function () {
-                if (window.fbq) window.fbq('track', 'Lead', { content_name: 'hero_' + variant });
-            };
+            /*
+             * ▼ 計測の考え方
+             *
+             * Lead        … 予約に向かう行動。LINE追加タップ と 電話タップ の2つ。
+             *               Metaの最適化対象はこれ。「予約したい人」を探させる。
+             * FindLocation… 場所の確認（Googleマップタップ）。
+             *               計測はするが Lead には入れない。理由は下記。
+             *
+             * マップタップをLeadに含めない理由：
+             *   マップは「どこにあるか見ただけ」の人も大量に押す。これをLeadに混ぜると、
+             *   (1) 件数が水増しされてCPAが実態より良く見える
+             *   (2) さらに悪いことに、Metaが「マップを押しやすい人」を探しに行き、
+             *       予約する気のない層に配信が寄っていく
+             *   計測しておけばリターゲティング用オーディエンスには使えるので、
+             *   別イベントとして残すのが正解。
+             */
+            function fire(event, kind) {
+                if (window.fbq) window.fbq('track', event, { content_name: kind + '_' + variant });
+                if (window.clarity) window.clarity('set', 'cta_tapped', kind);
+            }
+
+            // LINE追加タップ（従来から Lead として計測しているもの）
+            window.trackLead = function () { fire('Lead', 'line'); };
+            // 電話タップ（これまで未計測。予約意図はLINEより強い）
+            window.trackTel = function () { fire('Lead', 'tel'); };
+            // Googleマップタップ（最適化には使わない）
+            window.trackMap = function () { fire('FindLocation', 'map'); };
         })();
     </script>
     <!-- End A/B -->
@@ -335,7 +357,7 @@
                     <a href="#" className="flex-shrink-0">
                         <img src="./images/logo-new2.webp" alt="桜並木駅前の整骨院" className="h-8 w-auto" />
                     </a>
-                    <a href="https://maps.app.goo.gl/SVMYspHp6BMLiEwa7" target="_blank" rel="noopener noreferrer"
+                    <a href="https://maps.app.goo.gl/SVMYspHp6BMLiEwa7" target="_blank" rel="noopener noreferrer" onClick={() => window.trackMap()}
                        className="flex items-center gap-1.5 bg-skin-cream text-skin-dark text-xs font-bold px-4 py-2 rounded-full shadow-sm active:scale-95 transition-all border border-skin-blush/50">
                         <i className="fas fa-map-marker-alt text-skin-rose"></i>
                         <span>Googleマップで確認</span>
@@ -782,7 +804,7 @@
                 <h4 className="text-white/80 text-base mb-3 font-bold tracking-widest">桜並木駅前の整骨院</h4>
                 <p className="mb-1">〒812-0888 福岡県福岡市博多区竹丘町２丁目４−１８</p>
                 <p className="mb-3">西鉄天神大牟田線「桜並木駅」徒歩1分 / 駐車場完備</p>
-                <a href="tel:070-5530-6656" className="inline-block text-skin-peach border border-skin-blush/40 px-4 py-2 rounded-full hover:bg-skin-blush/10 transition text-sm">
+                <a href="tel:070-5530-6656" onClick={() => window.trackTel()} className="inline-block text-skin-peach border border-skin-blush/40 px-4 py-2 rounded-full hover:bg-skin-blush/10 transition text-sm">
                     <i className="fas fa-phone-alt mr-2"></i>070-5530-6656
                 </a>
                 <p className="opacity-30 mt-6">© Sakuranamiki Station Front Chiropractic.</p>
@@ -793,7 +815,7 @@
         const StickyCTA = () => (
             <div className="fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur border-t border-skin-peach/40 p-2 shadow-[0_-5px_20px_rgba(0,0,0,0.08)] z-[100]">
                 <div className="max-w-md mx-auto flex gap-2">
-                    <a href="tel:070-5530-6656"
+                    <a href="tel:070-5530-6656" onClick={() => window.trackTel()}
                        className="flex-1 flex items-center justify-center bg-skin-rose text-white rounded-full py-3 shadow-md active:scale-95 transition-all text-[13px] font-bold leading-tight text-center">
                         <i className="fas fa-phone-alt text-xl mr-2"></i>
                         <span>今すぐ電話で<br />来店予約</span>
