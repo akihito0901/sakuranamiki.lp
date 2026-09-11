@@ -700,53 +700,14 @@ const StickyCTA = () => /*#__PURE__*/React.createElement("div", {
   className: "fab fa-line text-2xl mr-2"
 }), /*#__PURE__*/React.createElement("span", null, "初回2,980円で", /*#__PURE__*/React.createElement("br", null), "LINE予約"))));
 
-/* ─── Campaign Popup ─── */
-const CampaignPopup = ({
-  onClose
-}) => {
-  return /*#__PURE__*/React.createElement("div", {
-    className: "fixed inset-0 z-[200] flex items-center justify-center px-4 bg-black/70 backdrop-blur-sm transition-all animate-fade-in"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "relative w-full max-w-sm mx-auto animate-scale-up"
-  }, /*#__PURE__*/React.createElement("button", {
-    onClick: onClose,
-    className: "absolute -top-10 right-0 text-white flex flex-col items-center gap-1 opacity-80 hover:opacity-100 transition-opacity z-10"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fas fa-times text-2xl drop-shadow-md"
-  }), /*#__PURE__*/React.createElement("span", {
-    className: "text-[10px] font-bold tracking-widest drop-shadow-md"
-  }, "閉じる")), /*#__PURE__*/React.createElement("div", {
-    className: "relative rounded-2xl overflow-hidden shadow-2xl border-[3px] border-white/50"
-  }, /*#__PURE__*/React.createElement("img", {
-    src: "./images/popup-quiz.webp",
-    alt: "コリが戻る理由は？",
-    className: "w-full h-auto block"
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "absolute bottom-[4%] left-0 w-full px-8 flex justify-center"
-  }, /*#__PURE__*/React.createElement("button", {
-    onClick: onClose,
-    className: "w-full max-w-[280px] bg-gradient-to-br from-[#ea580c] to-[#c2410c] text-white font-bold text-[17px] py-3.5 rounded-full shadow-lg active:scale-[0.96] transition-all flex items-center justify-center gap-2 group animate-btn-pulse"
-  }, /*#__PURE__*/React.createElement("span", null, "続きをチェック！"), /*#__PURE__*/React.createElement("i", {
-    className: "fas fa-chevron-down text-sm group-hover:translate-y-1 transition-transform"
-  }))))));
-};
-
 /* ─── App ─── */
 const App = () => {
-  const [showPopup, setShowPopup] = useState(false);
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (showPopup) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-  }, [showPopup]);
+  }, []);
   return /*#__PURE__*/React.createElement("div", {
     className: "w-full max-w-md mx-auto shadow-xl bg-white min-h-screen relative my-0 md:my-8"
-  }, showPopup && /*#__PURE__*/React.createElement(CampaignPopup, {
-    onClose: () => setShowPopup(false)
-  }), /*#__PURE__*/React.createElement(StickyHeader, null), /*#__PURE__*/React.createElement(Headline, null), /*#__PURE__*/React.createElement(EmpathySection, null), /*#__PURE__*/React.createElement(ProblemSection, null), /*#__PURE__*/React.createElement(CauseSection, null), /*#__PURE__*/React.createElement(SolutionSection, null), /*#__PURE__*/React.createElement(BenefitSection, null), /*#__PURE__*/React.createElement(ClinicDifferenceSection, null), /*#__PURE__*/React.createElement(ComparisonSection, null), /*#__PURE__*/React.createElement(FeatureSection, null), /*#__PURE__*/React.createElement(ReviewsSection, null), /*#__PURE__*/React.createElement(QASection, null), /*#__PURE__*/React.createElement(FinalCTA, null), /*#__PURE__*/React.createElement(Footer, null), /*#__PURE__*/React.createElement(StickyCTA, null));
+  }, /*#__PURE__*/React.createElement(StickyHeader, null), /*#__PURE__*/React.createElement(Headline, null), /*#__PURE__*/React.createElement(EmpathySection, null), /*#__PURE__*/React.createElement(ProblemSection, null), /*#__PURE__*/React.createElement(CauseSection, null), /*#__PURE__*/React.createElement(SolutionSection, null), /*#__PURE__*/React.createElement(BenefitSection, null), /*#__PURE__*/React.createElement(ClinicDifferenceSection, null), /*#__PURE__*/React.createElement(ComparisonSection, null), /*#__PURE__*/React.createElement(FeatureSection, null), /*#__PURE__*/React.createElement(ReviewsSection, null), /*#__PURE__*/React.createElement(QASection, null), /*#__PURE__*/React.createElement(FinalCTA, null), /*#__PURE__*/React.createElement(Footer, null), /*#__PURE__*/React.createElement(StickyCTA, null));
 };
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(/*#__PURE__*/React.createElement(App, null));
