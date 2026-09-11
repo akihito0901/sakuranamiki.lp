@@ -42,6 +42,28 @@
 
 ---
 
+## ヒーローのA/Cテスト（2026-09-11〜 実施中）
+
+ページ本体は完全に同一で、**違うのはヒーロー画像1枚だけ**。
+
+| | URL（Cloudflare Pages） | ヒーロー |
+|---|---|---|
+| A | <https://sakuranamiki-lp.pages.dev/> | `hero-ab-a-empathy.webp`（共感訴求） |
+| C | <https://sakuranamiki-lp.pages.dev/c> | `hero-ab-c-shinsokin.webp`（深層筋集中整体） |
+
+- **MetaのA/Bテスト機能で広告ごとにリンク先URLを分ける方式。**
+  以前はJSが50/50に振り分けていたが廃止した（同じ人が両方見る重複が起きるため）。
+- `tools/prerender.js` が `index.html`（A）と `c.html`（C）の2枚を生成する。
+  それぞれに正しい画像が焼き込まれているので、JSでの差し替えは無い。
+- `c.html` は `noindex`、canonical は `/` を指す（中身がほぼ同じなので重複回避）。
+- **Cloudflare Pages は `/c.html` を `/c` へ308リダイレクトする。**
+  広告のリンク先には余計な転送を避けるため `/c` を使うこと。
+  Xserverに移設した場合はリダイレクトされないので `/shinsokin/c.html` になる。
+- 計測: `LPView` イベントの `variant` に `a` / `c` が入る。
+  Leadイベントの `content_name` も `line_a` / `tel_c` のように末尾に付く。
+- A対Bは改修前のLPで実施してAが勝った。**その後ページを大きく変えているので、
+  今回のA対Cは仕切り直しの新しいテスト。**
+
 ## ★編集したら prerender が必要
 
 **`app.js` はブラウザに配信されない。編集しただけでは画面に反映されない。**

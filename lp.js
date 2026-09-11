@@ -18,20 +18,10 @@
 (function () {
   'use strict';
 
-  /* ── ヒーロー画像のA/B ──
-     HTMLにはAパターンが書き出してあるので、B判定のときだけ差し替える。
-     どちらを出すかは <head> のスクリプトが決めて window.AB_VARIANT に入れている。 */
-  var HERO_B = {
-    src: './images/hero-ab-b-authority.webp',
-    alt: '何度も繰り返す、そのつらさに。身体の奥深くから整える深層筋集中整体。深層筋×骨格×姿勢を整える、あなただけに合わせる整体。丁寧なカウンセリング／国家資格保有10年のキャリア／首・肩・腰のお悩みに。'
-  };
-  if (window.AB_VARIANT === 'b') {
-    var hero = document.querySelector('[data-hero]');
-    if (hero) {
-      hero.src = HERO_B.src;
-      hero.alt = HERO_B.alt;
-    }
-  }
+  /* ヒーロー画像の差し替え処理はここにあったが、不要になったので削除した。
+     A/Cはページ自体を分けて（/ と /c.html）それぞれに正しい画像を
+     焼き込む方式にしたため、JSで入れ替える必要がない。
+     以前の方式では、Cを見る人がA画像とC画像の両方を読み込んでいた。 */
 
   /* ── スクロールで要素を出す ──
      IntersectionObserver が無い環境では最初から見えている状態にする。 */

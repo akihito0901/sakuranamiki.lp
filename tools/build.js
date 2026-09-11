@@ -42,13 +42,13 @@ const CONF = {
 }[target];
 
 const DIST = path.join(ROOT, CONF.dir);
-const BASE_FILES = ['index.html', 'lp.js', 'styles.css'];
+const BASE_FILES = ['index.html', 'c.html', 'lp.js', 'styles.css'];
 
 fs.rmSync(DIST, { recursive: true, force: true });
 fs.mkdirSync(path.join(DIST, 'images'), { recursive: true });
 
 // URLを書き換えながらコピーするテキストファイル
-const rewritable = new Set(['index.html', 'robots.txt', 'sitemap.xml']);
+const rewritable = new Set(['index.html', 'c.html', 'robots.txt', 'sitemap.xml']);
 let rewrites = 0;
 
 for (const f of [...BASE_FILES, ...CONF.extra]) {

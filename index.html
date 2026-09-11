@@ -111,41 +111,31 @@
             src="https://www.facebook.com/tr?id=752934397862087&ev=PageView&noscript=1" /></noscript>
     <!-- End Meta Pixel Code -->
 
-    <!-- ヒーロー動画のA/Bテスト -->
+    <!-- ヒーローのA/Cテスト -->
     <script>
         /*
-         * URLの ?v= でヒーローを出し分ける。
-         *   ?v=a … 共感訴求（「また同じかも…」）
-         *   ?v=b … 権威訴求（Google口コミ★5.0）
-         * 広告のリンク先URLごとにパターンを固定する方式なので、
-         * ランダム割り当てはしない（同じ人には常に同じものが出る）。
-         * 指定なし（オーガニック流入・直打ち・広告以外）は a を表示。
+         * ヒーロー画像のパターンは「ページごとに固定」されている。
+         *   /         … a  共感訴求（「また同じかも…」）
+         *   /c.html   … c  深層筋集中整体のビジュアル
+         * ページ本体は完全に同一で、違うのはヒーロー1枚だけ。
+         *
+         * 以前はここでJSが50/50に振り分けていたが、MetaのA/Bテスト機能で
+         * 広告ごとにリンク先URLを分ける方式にしたのでやめた。こちらのほうが
+         * 同じ人が両方を見てしまう重複が起きず、勝敗判定もMetaがやってくれる。
+         *
+         * 下の variant の値は tools/prerender.js が書き込む。手で変えないこと。
          */
         (function () {
-            var q = (new URLSearchParams(location.search).get('v') || '').toLowerCase();
-            var variant;
-            if (q === 'a' || q === 'b') {
-                // URLで指定があればそれに従う（表示確認・共有用）
-                variant = q;
-            } else {
-                // 指定なし＝広告からの通常の流入。半分ずつ振り分ける。
-                // 一度決めた結果は保存し、同じ人には常に同じものを見せる
-                // （再訪で別パターンが出ると計測が壊れるため）
-                try { variant = localStorage.getItem('ab_hero'); } catch (e) { variant = null; }
-                if (variant !== 'a' && variant !== 'b') {
-                    variant = Math.random() < 0.5 ? 'a' : 'b';
-                    try { localStorage.setItem('ab_hero', variant); } catch (e) {}
-                }
-            }
-            var hero = (variant === 'b')
-                ? './images/hero-ab-b-authority.webp'
+            var variant = 'a'; /* PRERENDER:VARIANT */
+            var hero = (variant === 'c')
+                ? './images/hero-ab-c-shinsokin.webp'
                 : './images/hero-ab-a-empathy.webp';
 
             window.AB_VARIANT = variant;
             document.documentElement.setAttribute('data-variant', variant);
 
-            // ヒーローは画面最上部＝表示速度に直結するので、選ばれた方だけ先読みする。
-            // このLPはReactが組み立てる方式で初回描画が遅いため、先読みの効果が大きい。
+            // ヒーローは画面最上部＝表示速度に直結するので先読みしておく。
+            // HTMLにも正しい画像が焼き込まれているので二重に取得はされない。
             var link = document.createElement('link');
             link.rel = 'preload';
             link.as = 'image';

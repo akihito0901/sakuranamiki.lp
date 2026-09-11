@@ -137,14 +137,16 @@ const StickyHeader = () => /*#__PURE__*/React.createElement("div", {
   }), /*#__PURE__*/React.createElement("span", null, "Googleマップで確認"))));
 
 /* ─── ① ヘッドライン（A/Bテスト対象） ─── */
-/* パターンは URL の ?v= で決まる。切り替えロジックは <head> のスクリプト側。 */
+/* a と c の2パターン。どちらを出すかはページごとに固定されている。
+   tools/prerender.js が index.html には a、c.html には c を焼き込むため、
+   ブラウザ側で切り替える処理は無い（MetaのA/BテストでURLごとに分けるため）。 */
 const HERO_VARIANTS = {
   a: {
     src: './images/hero-ab-a-empathy.webp',
     alt: '「また同じかも…」そう思いながらこのページを見ているあなたへ。何件通っても繰り返した首・肩のつらさに、今度こそ丁寧に向き合います。初回限定2,980円'
   },
-  b: {
-    src: './images/hero-ab-b-authority.webp',
+  c: {
+    src: './images/hero-ab-c-shinsokin.webp',
     alt: '何度も繰り返す、そのつらさに。身体の奥深くから整える深層筋集中整体。深層筋×骨格×姿勢を整える、あなただけに合わせる整体。丁寧なカウンセリング／国家資格保有10年のキャリア／首・肩・腰のお悩みに。'
   }
 };
