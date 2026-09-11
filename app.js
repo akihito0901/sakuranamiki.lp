@@ -303,7 +303,7 @@ const BenefitSection = () => {
     height: 1672,
     loading: "lazy",
     decoding: "async",
-    alt: "こんな未来が待っています！",
+    alt: "施術のその先に、こんな毎日を取り戻しませんか？　朝、身体が軽く感じられる／つらさを気にせず過ごせる時間が増える／デスクワークもラクな姿勢で／頭も気持ちもすっきり前向きに／やりたいことをもっと楽しめる",
     className: "w-full h-auto block"
   }), /*#__PURE__*/React.createElement("div", {
     className: "px-5 py-10 text-center"
