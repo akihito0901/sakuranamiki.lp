@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ↓ index.html の <style> にあった独自スタイル（順序もそのまま） */
+
+        body { font-family: 'Noto Sans JP', sans-serif; }
+        .font-mincho { font-family: 'Shippori Mincho B1', serif; }
+
+        .accent-text { color: #c9918a; }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        /* Rainbow border animation */
+        .rainbow-card {
+            position: relative;
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+        }
+        .rainbow-card::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 19px;
+            background: linear-gradient(90deg, #f9a8d4, #fde68a, #a7f3d0, #93c5fd, #c4b5fd, #f9a8d4);
+            background-size: 300% 100%;
+            animation: rainbow-move 3s linear infinite;
+            z-index: -1;
+        }
+        @keyframes rainbow-move {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+        .rainbow-card::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 19px;
+            background: linear-gradient(90deg, #f9a8d4, #fde68a, #a7f3d0, #93c5fd, #c4b5fd, #f9a8d4);
+            background-size: 300% 100%;
+            animation: rainbow-move 3s linear infinite;
+            filter: blur(12px);
+            opacity: 0.5;
+            z-index: -2;
+        }
+
+        @keyframes bounce-subtle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.015); }
+        }
+        .rainbow-card { animation: bounce-subtle 2s ease-in-out infinite; }
+
+        @keyframes pulse-glow {
+            0%, 100% { text-shadow: 0 0 6px rgba(255,223,115,0.4), 0 2px 6px rgba(0,0,0,0.8); opacity: 0.8; }
+            50% { text-shadow: 0 0 20px rgba(255,223,115,1), 0 0 40px rgba(255,223,115,0.7), 0 2px 6px rgba(0,0,0,0.8); opacity: 1; }
+        }
+        .badge-glow { animation: pulse-glow 1.8s ease-in-out infinite; }
+
+        @keyframes btn-pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(234, 88, 12, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(234, 88, 12, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(234, 88, 12, 0); }
+        }
+        .animate-btn-pulse {
+            animation: btn-pulse 2s infinite;
+        }
+
+        @keyframes cta-shake {
+            0%   { transform: translateX(0) scale(1); }
+            10%  { transform: translateX(-5px) scale(1.04); }
+            20%  { transform: translateX(5px) scale(1.04); }
+            30%  { transform: translateX(-5px) scale(1.04); }
+            40%  { transform: translateX(5px) scale(1.04); }
+            55%  { transform: translateX(0) scale(1.04); }
+            70%  { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+        @keyframes cta-glow {
+            0%, 100% { box-shadow: 0 10px 30px rgba(6,199,85,0.4); }
+            50%       { box-shadow: 0 10px 50px rgba(6,199,85,0.85), 0 0 70px rgba(6,199,85,0.35); }
+        }
+        .cta-line-animated a {
+            animation: cta-shake 0.85s ease-out, cta-glow 2s ease-in-out 0.9s infinite;
+        }
+
+        @keyframes text-shimmer {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50%       { opacity: 0.7; transform: scale(1.03); }
+        }
+        .animate-text-shimmer {
+            animation: text-shimmer 2.4s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes zanri-blink {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+                text-shadow: 0 0 0 rgba(220, 38, 38, 0);
+            }
+            50% {
+                opacity: 0.72;
+                transform: scale(1.045);
+                text-shadow: 0 0 10px rgba(220, 38, 38, 0.28);
+            }
+        }
+        .animate-zanri {
+            animation: zanri-blink 2s ease-in-out infinite;
+            display: inline-block;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .animate-zanri { animation: none; }
+        }
+        @keyframes badge-warn {
+            0%, 100% { background-color: #ea580c; transform: scale(1); }
+            50%       { background-color: #dc2626; transform: scale(1.04); }
+        }
+        .animate-badge-warn {
+            animation: badge-warn 1.6s ease-in-out infinite;
+            display: inline-block;
+        }
+    
