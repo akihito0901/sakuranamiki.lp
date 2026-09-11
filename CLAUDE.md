@@ -10,7 +10,7 @@
 依頼された作業だけ黙って進めない。「これが残っていますが、ついでにやりますか？」と毎回聞く。
 依頼者本人からの指示です。
 
-### 未完了タスク（2026-09-11時点）
+### 未完了タスク（2026-09-13時点）
 
 - [ ] **Xserverへのアップロード（最優先・準備完了）**
   - 設置先: `https://sakuranamiki1.com/shinsokin/`
@@ -18,7 +18,8 @@
   - 再生成する場合: `node tools/prerender.js && node tools/build.js xserver`
   - 本サイトは Xserver 上の WordPress。`public_html/sakuranamiki1.com/shinsokin/` に
     ZIPの**中身**を展開する。`.htaccess` は隠しファイルなのでアップロード漏れに注意
-  - 現状LPは `pages.dev` にあり、本サイトのSEO評価が一切流れてこない状態
+  - 現状LPは Vercel と pages.dev にあり、どちらも本サイトとは別ドメイン。
+    本サイトのSEO評価が一切流れてこない状態
 
 - [ ] **本サイトに「深層筋集中整体とは」の記事を作り、LPへ内部リンクを張る**
   - **SEOの本体はこれ。** サブディレクトリに置くのは前提条件にすぎず、
@@ -42,27 +43,33 @@
 
 ---
 
-## ヒーローのA/Cテスト（2026-09-11〜 実施中）
+## 広告のリンク先とヒーローの状況（2026-09-13時点）
 
-ページ本体は完全に同一で、**違うのはヒーロー画像1枚だけ**。
+**広告のリンク先は Vercel の `https://sakuranamiki-lp.vercel.app/`。**
+GitHubに push すると Vercel も Cloudflare も自動で更新される。
 
-| | URL（Cloudflare Pages） | ヒーロー |
+| | URL | ヒーロー |
 |---|---|---|
-| A | <https://sakuranamiki-lp.pages.dev/> | `hero-ab-a-empathy.webp`（共感訴求） |
-| C | <https://sakuranamiki-lp.pages.dev/c> | `hero-ab-c-shinsokin.webp`（深層筋集中整体） |
+| 本番（広告） | <https://sakuranamiki-lp.vercel.app/> | `hero-shinsokin.webp`（深層筋・Google口コミ5.0入り） |
+| 控え | <https://sakuranamiki-lp.vercel.app/c.html> | `hero-empathy.webp`（共感訴求） |
+| 確認用 | <https://sakuranamiki-lp.pages.dev/> ／ `/c` | 同上 |
 
-- **MetaのA/Bテスト機能で広告ごとにリンク先URLを分ける方式。**
-  以前はJSが50/50に振り分けていたが廃止した（同じ人が両方見る重複が起きるため）。
-- `tools/prerender.js` が `index.html`（A）と `c.html`（C）の2枚を生成する。
-  それぞれに正しい画像が焼き込まれているので、JSでの差し替えは無い。
-- `c.html` は `noindex`、canonical は `/` を指す（中身がほぼ同じなので重複回避）。
-- **Cloudflare Pages は `/c.html` を `/c` へ308リダイレクトする。**
-  広告のリンク先には余計な転送を避けるため `/c` を使うこと。
-  Xserverに移設した場合はリダイレクトされないので `/shinsokin/c.html` になる。
-- 計測: `LPView` イベントの `variant` に `a` / `c` が入る。
-  Leadイベントの `content_name` も `line_a` / `tel_c` のように末尾に付く。
-- A対Bは改修前のLPで実施してAが勝った。**その後ページを大きく変えているので、
-  今回のA対Cは仕切り直しの新しいテスト。**
+- **A/Cテストは見送り中。** 予算が月5万円・週50リード規模で、折半すると
+  どちらのパターンも決着がつかないため。全員が本番（深層筋）を見ている。
+- **URLを変えずにページの中身を変える分には学習はリセットされない。**
+  Metaが見ているのは広告の設定だけで、リンク先の中身は検知しない。
+  ヒーロー差し替えもこの方法で行った（学習の損失ゼロ）。
+- 逆に**リンク先URLを変えると学習はリセットされる**（クリエイティブ変更扱い）。
+  A/Cテストを始めるならそのコストが必ず発生する。
+- ファイル名は中身を表す（`hero-shinsokin` / `hero-empathy`）。
+  `a` / `c` はURLのスロットを指すだけで、中身とは対応していない。
+- **Cloudflareは `/c`、Vercelは `/c.html`。** Vercelは `.html` を省略できない。
+- 計測: `LPView` の `variant` に `a` / `c`、Leadの `content_name` は `line_a` など。
+
+**※ Vercelは今も生きていて広告の配信先になっている。**
+クライアント案件をVercel無料枠で配信するのは規約上の懸念があり、
+本来はCloudflareへ寄せる方針。ただしURL変更＝学習リセットになるため、
+9/19-20の山を越えるまでは据え置きの判断。
 
 ## ★編集したら prerender が必要
 
@@ -83,7 +90,7 @@ canonical・OGP・構造化データ・sitemap の絶対URL8箇所を自動で�
 |---|---|---|
 | `app.js` | **本文・文言の編集はここ** | されない |
 | `index.html` | `app.js` から自動生成される完成品 | される |
-| `lp.js` | fade-up / Q&A開閉 / CTAアニメ / ヒーローA/B / タップ計測 | される |
+| `lp.js` | fade-up / Q&A開閉 / CTAアニメ / タップ計測 | される |
 | `styles.css` | Tailwindのビルド済み出力 | される |
 | `tools/prerender.js` | `app.js` → `index.html` | されない |
 | `tools/build.js` | 配信用ディレクトリ生成 | されない |
