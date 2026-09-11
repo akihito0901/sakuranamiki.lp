@@ -141,6 +141,7 @@
                             muted: '#c09090',
                             dark: '#6b4545',
                             text: '#5a4040',
+                            gray: '#8a7070',
                         }
                     },
                     fontFamily: {
@@ -411,25 +412,6 @@
             );
         };
 
-        const HeroFollowup = () => (
-            <div className="w-full bg-[#FCF8F5]">
-                <video
-                    src="./images/hero-followup-difference.mp4"
-                    poster="./images/hero-followup-difference-poster.webp"
-                    aria-label="当院の特徴と施術方針の紹介動画"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    disablePictureInPicture
-                    className="w-full h-auto block"
-                >
-                    お使いのブラウザは動画の再生に対応していません。
-                </video>
-            </div>
-        );
-
         const HeroBookingCTA = () => (
             <section className="w-full bg-[#FCF8F5] px-4 pt-5 pb-8" aria-label="LINEで予約状況を確認">
                 <div className="text-center mb-4">
@@ -695,6 +677,14 @@
                                 </div>
                             ))}
                         </div>
+
+                        {/* 口コミ直後のCTA */}
+                        <div className="max-w-sm mx-auto mt-10 pt-8 border-t border-skin-peach/50">
+                            <p className="text-center text-[15px] font-bold text-skin-dark leading-relaxed mb-4">
+                                次は、<span className="text-skin-rose">あなたの番</span>です。
+                            </p>
+                            <LineCTA flush />
+                        </div>
                     </div>
                 </div>
             );
@@ -751,6 +741,14 @@
                                 </div>
                             ))}
                         </div>
+
+                        {/* Q&A直後のCTA */}
+                        <div className="max-w-sm mx-auto mt-9">
+                            <p className="text-center text-[13px] text-skin-text/70 leading-relaxed mb-4">
+                                その他のご質問も、<br />LINEからお気軽にどうぞ。
+                            </p>
+                            <LineCTA flush />
+                        </div>
                     </div>
                 </div>
             );
@@ -806,7 +804,29 @@
                         </div>
                     </div>
 
+                    {/* 最終CTA（オファー画像の色をそのまま受け継ぐ） */}
+                    <div className="bg-skin-dark px-4 pt-8 pb-10">
+                        <p className="text-center text-[11px] font-bold tracking-[0.16em] text-skin-peach mb-3">
+                            ＼ 確認だけでも大丈夫です ／
+                        </p>
+                        <p className="text-center text-[13px] leading-relaxed text-white/75 mb-5">
+                            ご予約・空き状況の確認は<br />LINEから24時間受け付けています。
+                        </p>
 
+                        <LineCTA flush />
+
+                        <a href="tel:070-5530-6656" onClick={() => window.trackTel()}
+                           className="mt-3 w-full flex items-center justify-center gap-2.5 border border-white/30 text-white rounded-xl py-4 active:scale-[0.97] hover:bg-white/10 transition-all">
+                            <i className="fas fa-phone-alt text-base text-skin-peach"></i>
+                            <span className="text-[15px] font-bold tracking-tight">電話で予約する</span>
+                            <span className="text-[11px] text-white/50">070-5530-6656</span>
+                        </a>
+
+                        <p className="mt-5 text-center text-[10px] leading-relaxed text-white/40">
+                            受付 10:00〜14:00 / 15:00〜20:00（月〜土・祝）　日曜休診<br />
+                            提携駐車場の料金は当院が負担します
+                        </p>
+                    </div>
                 </div>
             );
         };
@@ -893,7 +913,6 @@
                     {showPopup && <CampaignPopup onClose={() => setShowPopup(false)} />}
                     <StickyHeader />
                     <Headline />
-                    <HeroFollowup />
                     <HeroBookingCTA />
                     <EmpathySection />
                     <ProblemSection />
