@@ -756,22 +756,27 @@ const Footer = () => /*#__PURE__*/React.createElement("footer", {
 const StickyCTA = () => /*#__PURE__*/React.createElement("div", {
   className: "fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur border-t border-skin-peach/40 p-2 shadow-[0_-5px_20px_rgba(0,0,0,0.08)] z-[100]"
 }, /*#__PURE__*/React.createElement("div", {
-  className: "max-w-md mx-auto flex gap-2"
-}, /*#__PURE__*/React.createElement("a", {
-  href: "tel:070-5530-6656",
-  onClick: () => window.trackTel(),
-  className: "flex-1 flex items-center justify-center bg-skin-rose text-white rounded-full py-3 shadow-md active:scale-95 transition-all text-[13px] font-bold leading-tight text-center"
-}, /*#__PURE__*/React.createElement(Icon, {
-    name: "phone-flip",
-    className: "text-xl mr-2"
-  }), /*#__PURE__*/React.createElement("span", null, "今すぐ電話で", /*#__PURE__*/React.createElement("br", null), "来店予約")), /*#__PURE__*/React.createElement("a", {
+  className: "max-w-md mx-auto"
+},
+/* 煽り文。矢印がボタンを指す。アニメーションは index.html のインラインCSS側。 */
+/*#__PURE__*/React.createElement("p", {
+  className: "sticky-cta-urgent text-center text-[11px] font-bold text-skin-rose mb-1 leading-tight"
+}, /*#__PURE__*/React.createElement("span", {
+  className: "sticky-cta-arrow"
+}, "▼"), "　予約枠が残りわずかです。お急ぎください　", /*#__PURE__*/React.createElement("span", {
+  className: "sticky-cta-arrow"
+}, "▼")),
+
+/* 電話ボタンは削除した。Clarityの計測でほとんどタップされておらず、
+   LINEボタンの幅を狭めるだけだったため。電話は最終CTAに残してある。 */
+/*#__PURE__*/React.createElement("a", {
   href: "https://lin.ee/uqCRkRL",
   onClick: () => window.trackLead(),
-  className: "flex-1 flex items-center justify-center bg-[#06C755] text-white rounded-full py-3 shadow-md active:scale-95 transition-all text-[13px] font-bold leading-tight text-center"
+  className: "sticky-cta-glow w-full flex items-center justify-center bg-[#06C755] text-white rounded-full py-3 shadow-md active:scale-95 transition-all text-[15px] font-bold leading-tight text-center"
 }, /*#__PURE__*/React.createElement(Icon, {
-    name: "line",
-    className: "text-2xl mr-2"
-  }), /*#__PURE__*/React.createElement("span", null, "LINEで空き状況を", /*#__PURE__*/React.createElement("br", null), "今すぐ確認"))));
+  name: "line",
+  className: "text-2xl mr-2"
+}), /*#__PURE__*/React.createElement("span", null, "LINEで空き状況を今すぐ確認"))));
 
 /* ─── App ─── */
 const App = () => {
