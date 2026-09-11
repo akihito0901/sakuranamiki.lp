@@ -1,6 +1,15 @@
-/* このファイルは index.html 内にあったJSXを事前コンパイルしたものです。
-   ブラウザ側で Babel(約2.8MB) を読み込んで毎回変換していたのをやめ、表示速度を優先しています。
-   以後の編集はこのファイルを直接触ってください（JSXではなく素のJavaScriptです）。 */
+/* このLPの本文を定義しているファイルです（JSXではなく素のJavaScript）。
+   文言やセクションを変えるときはここを編集します。
+
+   ★重要★ このファイルはブラウザには配信されません。
+   編集したあと必ず次を実行してください。実行しないと画面に反映されません。
+
+       node tools/prerender.js
+
+   これが app.js を一度だけレンダリングして、結果を index.html の
+   <div id="root"> に焼き込みます。ブラウザにReactは送らないので、
+   初期表示が速く、検索エンジンもJSを実行せずに本文を読めます。
+   画面の動き（開閉・アニメ・計測）は lp.js が担当します。 */
 const {
   useState,
   useEffect,
@@ -76,7 +85,8 @@ const LineCTA = ({
   }, [fired]);
   return /*#__PURE__*/React.createElement("div", {
     ref: ref,
-    className: `w-full ${flush ? '' : 'px-4'} ${fired ? 'cta-line-animated' : ''} ${className}`
+    className: `w-full ${flush ? '' : 'px-4'} ${fired ? 'cta-line-animated' : ''} ${className}`,
+    "data-cta-line": ""
   }, /*#__PURE__*/React.createElement("a", {
     href: "https://lin.ee/uqCRkRL",
     onClick: () => window.trackLead(),
@@ -150,6 +160,7 @@ const Headline = () => {
     width: "940",
     height: "1672",
     fetchpriority: "high",
+    "data-hero": "",
     decoding: "async",
     className: "w-full h-auto block"
   })));
@@ -604,10 +615,12 @@ const QASection = () => {
     className: "max-w-sm mx-auto"
   }, qaData.map((item, i) => /*#__PURE__*/React.createElement("div", {
     key: i,
-    className: "border-b border-skin-blush/30"
+    className: "border-b border-skin-blush/30",
+    "data-qa-item": ""
   }, /*#__PURE__*/React.createElement("button", {
     onClick: () => setOpenIdx(openIdx === i ? null : i),
-    className: "w-full flex items-center justify-between py-4 text-left"
+    className: "w-full flex items-center justify-between py-4 text-left",
+    "aria-expanded": openIdx === i ? "true" : "false"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex items-start gap-2.5"
   }, /*#__PURE__*/React.createElement("span", {
@@ -618,7 +631,8 @@ const QASection = () => {
     name: "chevron-down",
     className: `text-skin-blush text-[10px] ml-2 flex-shrink-0 transition-transform duration-300 ${openIdx === i ? 'rotate-180' : ''}`
   })), /*#__PURE__*/React.createElement("div", {
-    className: `overflow-hidden transition-all duration-300 ${openIdx === i ? 'max-h-[800px] opacity-100 pb-4' : 'max-h-0 opacity-0'}`
+    className: `overflow-hidden transition-all duration-300 ${openIdx === i ? 'max-h-[800px] opacity-100 pb-4' : 'max-h-0 opacity-0'}`,
+    "data-qa-panel": ""
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex items-start gap-2.5 pl-0"
   }, /*#__PURE__*/React.createElement("span", {
