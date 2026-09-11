@@ -177,7 +177,7 @@ const EmpathySection = () => {
     height: 1672,
     loading: "lazy",
     decoding: "async",
-    alt: "こんなお悩みありませんか？",
+    alt: "こんなお悩みありませんか？ マッサージへ行っても数日で戻る／湿布ばかり貼っている／病院では異常なしと言われた／原因が分からない／もう歳だから仕方ないと思っている。もし一つでも当てはまるなら、原因は痛い場所ではないかもしれません。",
     className: "w-full h-auto block drop-shadow-sm"
   }));
 };
@@ -194,7 +194,7 @@ const ProblemSection = () => {
     height: 1673,
     loading: "lazy",
     decoding: "async",
-    alt: "そのまま放置しておくと…",
+    alt: "そのまま放置しておくと… 1．集中力が続かない（仕事や勉強の効率が低下しミスが増える）／2．肩があがらなくなる・首が回らなくなる（服の着脱や運転など日常生活が不自由に）／3．痺れや痛みがとれない（慢性的な症状は改善に時間がかかる）／4．睡眠不足で体調を崩しやすくなる（疲れが取れず免疫力が低下）。つらい症状は早めのケアが大切です。",
     className: "w-full h-auto block drop-shadow-sm"
   }));
 };
@@ -211,7 +211,7 @@ const CauseSection = () => {
     height: 1672,
     loading: "lazy",
     decoding: "async",
-    alt: "なぜ、何をしてもコリが戻るのか",
+    alt: "なぜ肩や腰は何度も戻るのか？ 多くの整体では痛い場所を揉みます。でも姿勢・関節の動き・呼吸・身体を支える深層筋が変わっていなければ、数日後にはまた元通りになります。「また戻った」を繰り返していませんか？",
     className: "w-full h-auto block"
   }));
 };
@@ -250,7 +250,7 @@ const SolutionSection = () => {
     height: "849",
     loading: "lazy",
     decoding: "async",
-    alt: "院長",
+    alt: "桜並木駅前の整骨院 院長 今坂智和（国家資格保有）",
     className: "w-14 h-14 rounded-full object-cover shadow-md flex-shrink-0"
   }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", {
     className: "text-skin-dark font-bold text-sm"
@@ -297,7 +297,7 @@ const ClinicDifferenceSection = () => {
     height: 1672,
     loading: "lazy",
     decoding: "async",
-    alt: "当院はここが違います",
+    alt: "当院はココが違います。深層筋集中整体はただ揉むだけではありません。1．関節の動きを確認 2．姿勢を分析 3．呼吸を確認 4．深層筋へアプローチ 5．再発しない身体の使い方までアドバイス。痛みだけでなく、戻らない身体を目指します。",
     className: "w-full h-auto block"
   }));
 };
@@ -337,7 +337,7 @@ const ComparisonSection = () => {
     height: 1672,
     loading: "lazy",
     decoding: "async",
-    alt: "他院との違い",
+    alt: "他院との違い。一般的な整体は痛い場所を揉む・担当が変わる・待ち時間あり・気持ち良さ重視。当院は原因から改善・院長が毎回担当・完全予約制・卒業を目指す。",
     className: "w-full h-auto block"
   }));
 };
@@ -402,7 +402,7 @@ const FeatureSection = () => {
     className: "h-[2px] bg-skin-peach w-8 shadow-sm"
   }))), /*#__PURE__*/React.createElement("div", {
     className: "px-5 py-8 bg-white border-b border-skin-peach/30"
-  }, /*#__PURE__*/React.createElement("h4", {
+  }, /*#__PURE__*/React.createElement("h3", {
     className: "text-lg font-bold text-skin-dark mb-3 leading-snug"
   }, f.title), /*#__PURE__*/React.createElement("p", {
     className: "text-sm text-skin-text/70 leading-relaxed"
@@ -733,7 +733,7 @@ const FinalCTA = () => {
 /* ─── Footer ─── */
 const Footer = () => /*#__PURE__*/React.createElement("footer", {
   className: "bg-skin-dark text-white/50 py-10 pb-28 text-center text-xs"
-}, /*#__PURE__*/React.createElement("h4", {
+}, /*#__PURE__*/React.createElement("h3", {
   className: "text-white/80 text-base mb-3 font-bold tracking-widest"
 }, "桜並木駅前の整骨院"), /*#__PURE__*/React.createElement("p", {
   className: "mb-1"

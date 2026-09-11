@@ -1,0 +1,5 @@
+# 検索エンジン向け。全ページのクロールを許可する。
+User-agent: *
+Allow: /
+
+Sitemap: https://sakuranamiki-lp.pages.dev/sitemap.xml
