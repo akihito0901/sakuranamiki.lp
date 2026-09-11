@@ -6,6 +6,41 @@ const {
   useEffect,
   useRef
 } = React;
+
+/* Font Awesome をやめてインラインSVGにしたもの。
+   all.min.css(102KB)とwebフォント実体(約250KB)を読み込まず、実際に使う6個だけを持つ。
+   viewBoxの比率から幅を出しているので、従来どおり text-xl 等の文字サイズで拡縮できる。
+   色は fill:currentColor なので text-skin-rose 等のクラスもそのまま効く。 */
+const ICONS = {
+  "caret-right": ["0 0 256 512", "M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z"],
+  "chevron-down": ["0 0 512 512", "M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"],
+  "line": ["0 0 512 512", "M311 196.8v81.3c0 2.1-1.6 3.7-3.7 3.7h-13c-1.3 0-2.4-.7-3-1.5l-37.3-50.3v48.2c0 2.1-1.6 3.7-3.7 3.7h-13c-2.1 0-3.7-1.6-3.7-3.7V196.9c0-2.1 1.6-3.7 3.7-3.7h12.9c1.1 0 2.4 .6 3 1.6l37.3 50.3V196.9c0-2.1 1.6-3.7 3.7-3.7h13c2.1-.1 3.8 1.6 3.8 3.5zm-93.7-3.7h-13c-2.1 0-3.7 1.6-3.7 3.7v81.3c0 2.1 1.6 3.7 3.7 3.7h13c2.1 0 3.7-1.6 3.7-3.7V196.8c0-1.9-1.6-3.7-3.7-3.7zm-31.4 68.1H150.3V196.8c0-2.1-1.6-3.7-3.7-3.7h-13c-2.1 0-3.7 1.6-3.7 3.7v81.3c0 1 .3 1.8 1 2.5c.7 .6 1.5 1 2.5 1h52.2c2.1 0 3.7-1.6 3.7-3.7v-13c0-1.9-1.6-3.7-3.5-3.7zm193.7-68.1H327.3c-1.9 0-3.7 1.6-3.7 3.7v81.3c0 1.9 1.6 3.7 3.7 3.7h52.2c2.1 0 3.7-1.6 3.7-3.7V265c0-2.1-1.6-3.7-3.7-3.7H344V247.7h35.5c2.1 0 3.7-1.6 3.7-3.7V230.9c0-2.1-1.6-3.7-3.7-3.7H344V213.5h35.5c2.1 0 3.7-1.6 3.7-3.7v-13c-.1-1.9-1.7-3.7-3.7-3.7zM512 93.4V419.4c-.1 51.2-42.1 92.7-93.4 92.6H92.6C41.4 511.9-.1 469.8 0 418.6V92.6C.1 41.4 42.2-.1 93.4 0H419.4c51.2 .1 92.7 42.1 92.6 93.4zM441.6 233.5c0-83.4-83.7-151.3-186.4-151.3s-186.4 67.9-186.4 151.3c0 74.7 66.3 137.4 155.9 149.3c21.8 4.7 19.3 12.7 14.4 42.1c-.8 4.7-3.8 18.4 16.1 10.1s107.3-63.2 146.5-108.2c27-29.7 39.9-59.8 39.9-93.1z"],
+  "location-dot": ["0 0 384 512", "M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"],
+  "phone-flip": ["0 0 512 512", "M347.1 24.6c7.7-18.6 28-28.5 47.4-23.2l88 24C499.9 30.2 512 46 512 64c0 247.4-200.6 448-448 448c-18 0-33.8-12.1-38.6-29.5l-24-88c-5.3-19.4 4.6-39.7 23.2-47.4l96-40c16.3-6.8 35.2-2.1 46.3 11.6L207.3 368c70.4-33.3 127.4-90.3 160.7-160.7L318.7 167c-13.7-11.2-18.4-30-11.6-46.3l40-96z"],
+  "star": ["0 0 576 512", "M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"]
+};
+const Icon = ({
+  name,
+  className = ""
+}) => {
+  const ic = ICONS[name];
+  const vb = ic[0].split(" ");
+  return /*#__PURE__*/React.createElement("svg", {
+    className: className,
+    viewBox: ic[0],
+    fill: "currentColor",
+    "aria-hidden": "true",
+    focusable: "false",
+    style: {
+      height: "1em",
+      width: parseInt(vb[2], 10) / parseInt(vb[3], 10) + "em",
+      display: "inline-block",
+      verticalAlign: "-0.125em"
+    }
+  }, /*#__PURE__*/React.createElement("path", {
+    d: ic[1]
+  }));
+};
 const useFadeUp = () => {
   const ref = useRef(null);
   useEffect(() => {
@@ -54,8 +89,9 @@ const LineCTA = ({
     className: "text-[10px] tracking-widest bg-black/20 px-3 py-0.5 rounded-full"
   }, "＼ 24時間受付・LINEで完結 ／"), /*#__PURE__*/React.createElement("div", {
     className: "flex items-center gap-3 mt-1"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fab fa-line text-4xl drop-shadow-md"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "line",
+    className: "text-4xl drop-shadow-md"
   }), /*#__PURE__*/React.createElement("span", {
     className: "text-[17px] sm:text-xl font-black tracking-tight leading-snug"
   }, "初回2,980円で", /*#__PURE__*/React.createElement("br", {
@@ -76,6 +112,8 @@ const StickyHeader = () => /*#__PURE__*/React.createElement("div", {
 }, /*#__PURE__*/React.createElement("img", {
   src: "./images/logo-new2.webp",
   alt: "桜並木駅前の整骨院",
+  width: "726",
+  height: "161",
   className: "h-8 w-auto"
 })), /*#__PURE__*/React.createElement("a", {
   href: "https://maps.app.goo.gl/SVMYspHp6BMLiEwa7",
@@ -83,9 +121,10 @@ const StickyHeader = () => /*#__PURE__*/React.createElement("div", {
   rel: "noopener noreferrer",
   onClick: () => window.trackMap(),
   className: "flex items-center gap-1.5 bg-skin-cream text-skin-dark text-xs font-bold px-4 py-2 rounded-full shadow-sm active:scale-95 transition-all border border-skin-blush/50"
-}, /*#__PURE__*/React.createElement("i", {
-  className: "fas fa-map-marker-alt text-skin-rose"
-}), /*#__PURE__*/React.createElement("span", null, "Googleマップで確認"))));
+}, /*#__PURE__*/React.createElement(Icon, {
+    name: "location-dot",
+    className: "text-skin-rose"
+  }), /*#__PURE__*/React.createElement("span", null, "Googleマップで確認"))));
 
 /* ─── ① ヘッドライン（A/Bテスト対象） ─── */
 /* パターンは URL の ?v= で決まる。切り替えロジックは <head> のスクリプト側。 */
@@ -196,6 +235,8 @@ const SolutionSection = () => {
     className: "flex items-center gap-3 mb-5"
   }, /*#__PURE__*/React.createElement("img", {
     src: "./images/director.webp",
+    width: "857",
+    height: "849",
     loading: "lazy",
     decoding: "async",
     alt: "院長",
@@ -442,16 +483,21 @@ const ReviewsSection = () => {
     className: "font-bold text-skin-dark text-lg"
   }, "5.0"), /*#__PURE__*/React.createElement("div", {
     className: "flex text-yellow-500 text-base gap-0.5"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fas fa-star"
-  }), /*#__PURE__*/React.createElement("i", {
-    className: "fas fa-star"
-  }), /*#__PURE__*/React.createElement("i", {
-    className: "fas fa-star"
-  }), /*#__PURE__*/React.createElement("i", {
-    className: "fas fa-star"
-  }), /*#__PURE__*/React.createElement("i", {
-    className: "fas fa-star"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "star",
+    className: ""
+  }), /*#__PURE__*/React.createElement(Icon, {
+    name: "star",
+    className: ""
+  }), /*#__PURE__*/React.createElement(Icon, {
+    name: "star",
+    className: ""
+  }), /*#__PURE__*/React.createElement(Icon, {
+    name: "star",
+    className: ""
+  }), /*#__PURE__*/React.createElement(Icon, {
+    name: "star",
+    className: ""
   })))), /*#__PURE__*/React.createElement("div", {
     className: "space-y-0 max-w-sm mx-auto"
   }, data.map((d, i) => /*#__PURE__*/React.createElement("div", {
@@ -469,16 +515,21 @@ const ReviewsSection = () => {
     className: "text-[10px] text-skin-text/50 ml-2"
   }, d.attr))), /*#__PURE__*/React.createElement("div", {
     className: "flex text-yellow-500 text-[10px] gap-0.5"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fas fa-star"
-  }), /*#__PURE__*/React.createElement("i", {
-    className: "fas fa-star"
-  }), /*#__PURE__*/React.createElement("i", {
-    className: "fas fa-star"
-  }), /*#__PURE__*/React.createElement("i", {
-    className: "fas fa-star"
-  }), /*#__PURE__*/React.createElement("i", {
-    className: "fas fa-star"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "star",
+    className: ""
+  }), /*#__PURE__*/React.createElement(Icon, {
+    name: "star",
+    className: ""
+  }), /*#__PURE__*/React.createElement(Icon, {
+    name: "star",
+    className: ""
+  }), /*#__PURE__*/React.createElement(Icon, {
+    name: "star",
+    className: ""
+  }), /*#__PURE__*/React.createElement(Icon, {
+    name: "star",
+    className: ""
   }))), /*#__PURE__*/React.createElement("p", {
     className: "text-sm font-bold text-skin-dark mb-1"
   }, d.t), /*#__PURE__*/React.createElement("p", {
@@ -563,8 +614,9 @@ const QASection = () => {
     className: "text-skin-rose font-bold text-base mt-0.5"
   }, "Q"), /*#__PURE__*/React.createElement("span", {
     className: "text-sm font-bold text-skin-dark leading-relaxed"
-  }, item.q)), /*#__PURE__*/React.createElement("i", {
-    className: `fas fa-chevron-down text-skin-blush text-[10px] ml-2 flex-shrink-0 transition-transform duration-300 ${openIdx === i ? 'rotate-180' : ''}`
+  }, item.q)), /*#__PURE__*/React.createElement(Icon, {
+    name: "chevron-down",
+    className: `text-skin-blush text-[10px] ml-2 flex-shrink-0 transition-transform duration-300 ${openIdx === i ? 'rotate-180' : ''}`
   })), /*#__PURE__*/React.createElement("div", {
     className: `overflow-hidden transition-all duration-300 ${openIdx === i ? 'max-h-[800px] opacity-100 pb-4' : 'max-h-0 opacity-0'}`
   }, /*#__PURE__*/React.createElement("div", {
@@ -627,8 +679,9 @@ const FinalCTA = () => {
     className: "flex items-baseline gap-2 mb-1"
   }, /*#__PURE__*/React.createElement("span", {
     className: "text-white/60 text-sm line-through"
-  }, "通常 7,500円"), /*#__PURE__*/React.createElement("i", {
-    className: "fas fa-caret-right text-skin-peach text-sm"
+  }, "通常 7,500円"), /*#__PURE__*/React.createElement(Icon, {
+    name: "caret-right",
+    className: "text-skin-peach text-sm"
   })), /*#__PURE__*/React.createElement("div", {
     className: "flex items-baseline"
   }, /*#__PURE__*/React.createElement("span", {
@@ -651,8 +704,9 @@ const FinalCTA = () => {
     href: "tel:070-5530-6656",
     onClick: () => window.trackTel(),
     className: "mt-3 w-full flex items-center justify-center gap-2.5 border border-white/30 text-white rounded-xl py-4 active:scale-[0.97] hover:bg-white/10 transition-all"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fas fa-phone-alt text-base text-skin-peach"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "phone-flip",
+    className: "text-base text-skin-peach"
   }), /*#__PURE__*/React.createElement("span", {
     className: "text-[15px] font-bold tracking-tight"
   }, "電話で予約する"), /*#__PURE__*/React.createElement("span", {
@@ -675,9 +729,10 @@ const Footer = () => /*#__PURE__*/React.createElement("footer", {
   href: "tel:070-5530-6656",
   onClick: () => window.trackTel(),
   className: "inline-block text-skin-peach border border-skin-blush/40 px-4 py-2 rounded-full hover:bg-skin-blush/10 transition text-sm"
-}, /*#__PURE__*/React.createElement("i", {
-  className: "fas fa-phone-alt mr-2"
-}), "070-5530-6656"), /*#__PURE__*/React.createElement("p", {
+}, /*#__PURE__*/React.createElement(Icon, {
+    name: "phone-flip",
+    className: "mr-2"
+  }), "070-5530-6656"), /*#__PURE__*/React.createElement("p", {
   className: "opacity-30 mt-6"
 }, "© Sakuranamiki Station Front Chiropractic."));
 
@@ -690,15 +745,17 @@ const StickyCTA = () => /*#__PURE__*/React.createElement("div", {
   href: "tel:070-5530-6656",
   onClick: () => window.trackTel(),
   className: "flex-1 flex items-center justify-center bg-skin-rose text-white rounded-full py-3 shadow-md active:scale-95 transition-all text-[13px] font-bold leading-tight text-center"
-}, /*#__PURE__*/React.createElement("i", {
-  className: "fas fa-phone-alt text-xl mr-2"
-}), /*#__PURE__*/React.createElement("span", null, "今すぐ電話で", /*#__PURE__*/React.createElement("br", null), "来店予約")), /*#__PURE__*/React.createElement("a", {
+}, /*#__PURE__*/React.createElement(Icon, {
+    name: "phone-flip",
+    className: "text-xl mr-2"
+  }), /*#__PURE__*/React.createElement("span", null, "今すぐ電話で", /*#__PURE__*/React.createElement("br", null), "来店予約")), /*#__PURE__*/React.createElement("a", {
   href: "https://lin.ee/uqCRkRL",
   onClick: () => window.trackLead(),
   className: "flex-1 flex items-center justify-center bg-[#06C755] text-white rounded-full py-3 shadow-md active:scale-95 transition-all text-[13px] font-bold leading-tight text-center"
-}, /*#__PURE__*/React.createElement("i", {
-  className: "fab fa-line text-2xl mr-2"
-}), /*#__PURE__*/React.createElement("span", null, "初回2,980円で", /*#__PURE__*/React.createElement("br", null), "LINE予約"))));
+}, /*#__PURE__*/React.createElement(Icon, {
+    name: "line",
+    className: "text-2xl mr-2"
+  }), /*#__PURE__*/React.createElement("span", null, "初回2,980円で", /*#__PURE__*/React.createElement("br", null), "LINE予約"))));
 
 /* ─── App ─── */
 const App = () => {
@@ -711,6 +768,3 @@ const App = () => {
 };
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(/*#__PURE__*/React.createElement(App, null));
-requestAnimationFrame(() => {
-  window.scrollTo(0, 0);
-});

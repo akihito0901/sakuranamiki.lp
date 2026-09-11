@@ -1,0 +1,15 @@
+# Cloudflare Pages のキャッシュ設定。
+# 既定では全ファイルが max-age=0, must-revalidate で、画像も毎回再検証していた。
+#
+# 画像と動画は1日キャッシュ + 1週間の stale-while-revalidate。
+# ファイル名にハッシュが付かない運用（hero-ab-b-authority.webp を直接差し替える等）
+# なので immutable の長期キャッシュは使わない。差し替えが返ってこなくなるため。
+/images/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+# Reactは自己ホストでバージョンも固定。長めに持たせる。
+/vendor/*
+  Cache-Control: public, max-age=2592000
+
+# index.html / app.js / styles.css は既定のまま（毎回再検証）。
+# デプロイした内容がすぐ反映されるようにしておく。

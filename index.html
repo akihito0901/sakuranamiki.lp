@@ -118,11 +118,17 @@
     <!-- React & ReactDOM（自己ホスト）。BabelはJSXを事前変換したので読み込まない -->
     <script defer src="./vendor/react.production.min.js"></script>
     <script defer src="./vendor/react-dom.production.min.js"></script>
-    <!-- Tailwind CSS -->
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Shippori+Mincho+B1:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts。実際に使うウェイトだけに絞っている。
+         Noto Sans JP … 400(本文) / 700(font-bold) / 900(font-black)
+         Shippori Mincho B1 … 700のみ（.font-mincho は3箇所とも font-bold とセット）
+         以前は10ウェイト指定していた。日本語フォントはunicode-rangeで細かく分割
+         されるため @font-face が1230個生成され、描画をブロックするCSSだけで
+         1.16MBあった。使うウェイトに絞って461KBになっている。 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Shippori+Mincho+B1:wght@700&display=swap" rel="stylesheet">
+    <!-- Font Awesome は廃止。CSS 102KB + webフォント実体 約250KB を読んでいたが、
+         使っていたのは6アイコンだけだったので app.js にインラインSVGで持たせた。 -->
     <!-- Tailwind と独自スタイルをビルドしたCSS（CDNの実行時生成をやめた） -->
     <link rel="stylesheet" href="./styles.css">
 
@@ -130,16 +136,22 @@
 
 <body class="bg-skin-cream text-skin-text antialiased pb-20">
     <script>
+        /*
+         * 読み込み時に必ずページ先頭から始めるための処理。
+         *
+         * 以前はここで 50ms ごとに scrollTo(0,0) を呼ぶ setInterval を2秒間回していた。
+         * 目的（ブラウザによる前回位置の復元を防ぐ）は scrollRestoration='manual' だけで
+         * 達成できるうえ、広告から来た人は着地直後にスクロールを始めるので、
+         * 読み始めた人を2秒間くり返し最上部へ引き戻す状態になっていた。
+         * load 時の scrollTo も同じ理由で削除している。
+         */
         (function () {
             if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-            window.location.hash = "";
+            // hash を消す。location.hash="" は末尾に "#" を残し履歴も汚すので replaceState を使う
+            if (location.hash) history.replaceState(null, '', location.pathname + location.search);
             window.scrollTo(0, 0);
-            document.documentElement.scrollTop = 0;
-            document.body && (document.body.scrollTop = 0);
-            var si = setInterval(function () { window.scrollTo(0, 0); document.documentElement.scrollTop = 0; }, 50);
-            setTimeout(function () { clearInterval(si); }, 2000);
-            window.addEventListener('pageshow', function () { window.scrollTo(0, 0); });
-            window.addEventListener('load', function () { window.scrollTo(0, 0); });
+            // bfcache から復帰したときだけ先頭に戻す（通常の再描画では動かさない）
+            window.addEventListener('pageshow', function (e) { if (e.persisted) window.scrollTo(0, 0); });
         })();
     </script>
     <div id="root"></div>
