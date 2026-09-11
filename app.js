@@ -104,9 +104,9 @@ const LineCTA = ({
     className: "text-4xl drop-shadow-md"
   }), /*#__PURE__*/React.createElement("span", {
     className: "text-[17px] sm:text-xl font-black tracking-tight leading-snug"
-  }, "初回2,980円で", /*#__PURE__*/React.createElement("br", {
+  }, "今すぐLINEで", /*#__PURE__*/React.createElement("br", {
     className: "sm:hidden"
-  }), "予約する")), /*#__PURE__*/React.createElement("span", {
+  }), "空き状況を確認する")), /*#__PURE__*/React.createElement("span", {
     className: "text-[10px] mt-1 opacity-80"
   }, "※タップするとLINEアプリが開きます"))));
 };
@@ -712,9 +712,9 @@ const FinalCTA = () => {
     className: "bg-skin-dark px-4 pt-8 pb-10"
   }, /*#__PURE__*/React.createElement("p", {
     className: "text-center text-[11px] font-bold tracking-[0.16em] text-skin-peach mb-3"
-  }, "＼ 初回特別価格でご予約いただけます ／"), /*#__PURE__*/React.createElement("p", {
+  }, "＼ 確認だけでも大丈夫です ／"), /*#__PURE__*/React.createElement("p", {
     className: "text-center text-[13px] leading-relaxed text-white/75 mb-5"
-  }, "ご予約は", /*#__PURE__*/React.createElement("br", null), "LINEから24時間受け付けています。"), /*#__PURE__*/React.createElement(LineCTA, {
+  }, "ご予約・空き状況の確認は", /*#__PURE__*/React.createElement("br", null), "LINEから24時間受け付けています。"), /*#__PURE__*/React.createElement(LineCTA, {
     flush: true
   }), /*#__PURE__*/React.createElement("a", {
     href: "tel:070-5530-6656",
@@ -771,7 +771,7 @@ const StickyCTA = () => /*#__PURE__*/React.createElement("div", {
 }, /*#__PURE__*/React.createElement(Icon, {
     name: "line",
     className: "text-2xl mr-2"
-  }), /*#__PURE__*/React.createElement("span", null, "初回2,980円で", /*#__PURE__*/React.createElement("br", null), "LINE予約"))));
+  }), /*#__PURE__*/React.createElement("span", null, "LINEで空き状況を", /*#__PURE__*/React.createElement("br", null), "今すぐ確認"))));
 
 /* ─── App ─── */
 const App = () => {
