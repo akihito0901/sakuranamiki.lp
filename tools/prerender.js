@@ -132,6 +132,6 @@ console.log('index.html (ヒーローA): %s', kb(htmlA));
 console.log('c.html     (ヒーローC): %s  ※noindex', kb(htmlC));
 for (const [name, h] of [['index.html', htmlA], ['c.html', htmlC]]) {
   // 実際に描画されるヒーロー（data-hero が付いた img）を確認用に出す
-  const m = h.match(/<img src="\.\/images\/(hero-ab-[a-z-]+\.webp)"[^>]*data-hero/);
+  const m = h.match(/<img src="\.\/images\/(hero-[a-z-]+\.webp)"[^>]*data-hero/);
   console.log('  ' + name + ' のヒーロー: ' + (m ? m[1] : '不明'));
 }
