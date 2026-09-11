@@ -758,12 +758,16 @@ const StickyCTA = () => /*#__PURE__*/React.createElement("div", {
 }, /*#__PURE__*/React.createElement("div", {
   className: "max-w-md mx-auto"
 },
-/* 煽り文。矢印がボタンを指す。アニメーションは index.html のインラインCSS側。 */
+/* 矢印がボタンを指す。アニメーションは index.html のインラインCSS側。
+   「残りわずか」のような果数の主張は使わない。枠の状況が変わるたびに
+   書き換えが必要になるうえ、実態と食い違うと信用を削るため。
+   ここは助言の形にしてあり、問題提起セクションの画像にある
+   「つらい症状は、早めのケアが大切です！」と揃えている。 */
 /*#__PURE__*/React.createElement("p", {
   className: "sticky-cta-urgent text-center text-[11px] font-bold text-skin-rose mb-1 leading-tight"
 }, /*#__PURE__*/React.createElement("span", {
   className: "sticky-cta-arrow"
-}, "▼"), "　予約枠が残りわずかです。お急ぎください　", /*#__PURE__*/React.createElement("span", {
+}, "▼"), "　つらい症状は早めのケアがおすすめです　", /*#__PURE__*/React.createElement("span", {
   className: "sticky-cta-arrow"
 }, "▼")),
 
