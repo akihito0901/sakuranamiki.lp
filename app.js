@@ -58,9 +58,9 @@ const LineCTA = ({
     className: "fab fa-line text-4xl drop-shadow-md"
   }), /*#__PURE__*/React.createElement("span", {
     className: "text-[17px] sm:text-xl font-black tracking-tight leading-snug"
-  }, "今すぐLINEで", /*#__PURE__*/React.createElement("br", {
+  }, "初回2,980円で", /*#__PURE__*/React.createElement("br", {
     className: "sm:hidden"
-  }), "空き状況を確認する")), /*#__PURE__*/React.createElement("span", {
+  }), "予約する")), /*#__PURE__*/React.createElement("span", {
     className: "text-[10px] mt-1 opacity-80"
   }, "※タップするとLINEアプリが開きます"))));
 };
@@ -115,82 +115,6 @@ const Headline = () => {
     className: "w-full h-auto block"
   })));
 };
-const HeroBookingCTA = () => /*#__PURE__*/React.createElement("section", {
-  className: "w-full bg-[#FCF8F5] px-4 pt-5 pb-8",
-  "aria-label": "初回特別価格のご案内とご予約"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "text-center mb-4"
-}, /*#__PURE__*/React.createElement("span", {
-  className: "inline-block text-[11px] font-bold tracking-[0.16em] text-skin-rose border-b border-skin-rose/40 pb-1"
-}, "ご予約を検討中の方へ"), /*#__PURE__*/React.createElement("h2", {
-  className: "mt-3 text-[21px] sm:text-2xl font-black leading-relaxed text-skin-dark"
-}, "直近の空き状況を", /*#__PURE__*/React.createElement("br", null), "LINEで確認できます"), /*#__PURE__*/React.createElement("p", {
-  className: "mt-2 text-[12px] leading-relaxed text-skin-gray"
-}, "空き状況の確認だけでも大丈夫です。", /*#__PURE__*/React.createElement("br", null), "ご希望の日時をトーク画面からお送りください。")),
-
-/* オファー（初回2,980円）。最終CTAの価格ブロックをそのまま複製し、
-   クリーム背景に載るようカード化した。広告から来た人が価格を知らないまま
-   長いLPをスクロールする状態だったので、ヒーロー直下でも提示する。 */
-/*#__PURE__*/React.createElement("div", {
-  className: "bg-skin-dark rounded-2xl px-5 py-5 mb-4 text-center"
-}, /*#__PURE__*/React.createElement("span", {
-  className: "inline-block bg-white/20 backdrop-blur-sm text-white text-[10px] font-bold px-3 py-1 rounded-full mb-3 border border-white/30"
-}, "初回体験・特別価格"), /*#__PURE__*/React.createElement("div", {
-  className: "flex items-baseline justify-center gap-2 mb-1"
-}, /*#__PURE__*/React.createElement("span", {
-  className: "text-white/60 text-sm line-through"
-}, "通常 7,500円"), /*#__PURE__*/React.createElement("i", {
-  className: "fas fa-caret-right text-skin-peach text-sm"
-})), /*#__PURE__*/React.createElement("div", {
-  className: "flex items-baseline justify-center"
-}, /*#__PURE__*/React.createElement("span", {
-  className: "text-white font-black text-[52px] tracking-tight leading-none drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)]"
-}, "2,980"), /*#__PURE__*/React.createElement("span", {
-  className: "text-white text-xl font-bold ml-1"
-}, "円"), /*#__PURE__*/React.createElement("span", {
-  className: "text-[10px] text-white/60 ml-1"
-}, "(税込)")), /*#__PURE__*/React.createElement("p", {
-  className: "text-[10px] text-white/40 mt-2"
-}, "※定員に達し次第、通常価格に戻ります。")),
-
-/*#__PURE__*/React.createElement(LineCTA, {
-  flush: true
-}),
-
-/* 電話CTA。最終CTAのものを複製（onClick の trackTel＝Meta Lead計測もそのまま）。
-   配色だけクリーム背景用に振り替えている。 */
-/*#__PURE__*/React.createElement("a", {
-  href: "tel:070-5530-6656",
-  onClick: () => window.trackTel(),
-  className: "mt-3 w-full flex items-center justify-center gap-2.5 border border-skin-rose/40 text-skin-dark rounded-xl py-4 active:scale-[0.97] hover:bg-skin-blush/10 transition-all"
-}, /*#__PURE__*/React.createElement("i", {
-  className: "fas fa-phone-alt text-base text-skin-rose"
-}), /*#__PURE__*/React.createElement("span", {
-  className: "text-[15px] font-bold tracking-tight"
-}, "電話で予約する"), /*#__PURE__*/React.createElement("span", {
-  className: "text-[11px] text-skin-gray"
-}, "070-5530-6656")),
-
-/*#__PURE__*/React.createElement("div", {
-  className: "mt-4 flex items-center justify-center gap-2 text-[10px] font-bold text-skin-gray"
-}, /*#__PURE__*/React.createElement("span", {
-  className: "flex items-center gap-1"
-}, /*#__PURE__*/React.createElement("i", {
-  className: "fas fa-check-circle text-[#06C755]"
-}), "24時間受付"), /*#__PURE__*/React.createElement("span", {
-  className: "w-px h-3 bg-skin-blush"
-}), /*#__PURE__*/React.createElement("span", {
-  className: "flex items-center gap-1"
-}, /*#__PURE__*/React.createElement("i", {
-  className: "fas fa-check-circle text-[#06C755]"
-}), "LINEで完結"), /*#__PURE__*/React.createElement("span", {
-  className: "w-px h-3 bg-skin-blush"
-}), /*#__PURE__*/React.createElement("span", {
-  className: "flex items-center gap-1"
-}, /*#__PURE__*/React.createElement("i", {
-  className: "fas fa-check-circle text-[#06C755]"
-}), "確認だけでもOK")));
-
 /* ─── ② 悩みの共感 ─── */
 const EmpathySection = () => {
   const ref = useFadeUp();
@@ -719,9 +643,9 @@ const FinalCTA = () => {
     className: "bg-skin-dark px-4 pt-8 pb-10"
   }, /*#__PURE__*/React.createElement("p", {
     className: "text-center text-[11px] font-bold tracking-[0.16em] text-skin-peach mb-3"
-  }, "＼ 確認だけでも大丈夫です ／"), /*#__PURE__*/React.createElement("p", {
+  }, "＼ 初回特別価格でご予約いただけます ／"), /*#__PURE__*/React.createElement("p", {
     className: "text-center text-[13px] leading-relaxed text-white/75 mb-5"
-  }, "ご予約・空き状況の確認は", /*#__PURE__*/React.createElement("br", null), "LINEから24時間受け付けています。"), /*#__PURE__*/React.createElement(LineCTA, {
+  }, "ご予約は", /*#__PURE__*/React.createElement("br", null), "LINEから24時間受け付けています。"), /*#__PURE__*/React.createElement(LineCTA, {
     flush: true
   }), /*#__PURE__*/React.createElement("a", {
     href: "tel:070-5530-6656",
@@ -774,7 +698,7 @@ const StickyCTA = () => /*#__PURE__*/React.createElement("div", {
   className: "flex-1 flex items-center justify-center bg-[#06C755] text-white rounded-full py-3 shadow-md active:scale-95 transition-all text-[13px] font-bold leading-tight text-center"
 }, /*#__PURE__*/React.createElement("i", {
   className: "fab fa-line text-2xl mr-2"
-}), /*#__PURE__*/React.createElement("span", null, "LINEで空き状況を", /*#__PURE__*/React.createElement("br", null), "今すぐ確認"))));
+}), /*#__PURE__*/React.createElement("span", null, "初回2,980円で", /*#__PURE__*/React.createElement("br", null), "LINE予約"))));
 
 /* ─── Campaign Popup ─── */
 const CampaignPopup = ({
@@ -822,7 +746,7 @@ const App = () => {
     className: "w-full max-w-md mx-auto shadow-xl bg-white min-h-screen relative my-0 md:my-8"
   }, showPopup && /*#__PURE__*/React.createElement(CampaignPopup, {
     onClose: () => setShowPopup(false)
-  }), /*#__PURE__*/React.createElement(StickyHeader, null), /*#__PURE__*/React.createElement(Headline, null), /*#__PURE__*/React.createElement(HeroBookingCTA, null), /*#__PURE__*/React.createElement(EmpathySection, null), /*#__PURE__*/React.createElement(ProblemSection, null), /*#__PURE__*/React.createElement(CauseSection, null), /*#__PURE__*/React.createElement(SolutionSection, null), /*#__PURE__*/React.createElement(BenefitSection, null), /*#__PURE__*/React.createElement(ClinicDifferenceSection, null), /*#__PURE__*/React.createElement(ComparisonSection, null), /*#__PURE__*/React.createElement(FeatureSection, null), /*#__PURE__*/React.createElement(ReviewsSection, null), /*#__PURE__*/React.createElement(QASection, null), /*#__PURE__*/React.createElement(FinalCTA, null), /*#__PURE__*/React.createElement(Footer, null), /*#__PURE__*/React.createElement(StickyCTA, null));
+  }), /*#__PURE__*/React.createElement(StickyHeader, null), /*#__PURE__*/React.createElement(Headline, null), /*#__PURE__*/React.createElement(EmpathySection, null), /*#__PURE__*/React.createElement(ProblemSection, null), /*#__PURE__*/React.createElement(CauseSection, null), /*#__PURE__*/React.createElement(SolutionSection, null), /*#__PURE__*/React.createElement(BenefitSection, null), /*#__PURE__*/React.createElement(ClinicDifferenceSection, null), /*#__PURE__*/React.createElement(ComparisonSection, null), /*#__PURE__*/React.createElement(FeatureSection, null), /*#__PURE__*/React.createElement(ReviewsSection, null), /*#__PURE__*/React.createElement(QASection, null), /*#__PURE__*/React.createElement(FinalCTA, null), /*#__PURE__*/React.createElement(Footer, null), /*#__PURE__*/React.createElement(StickyCTA, null));
 };
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(/*#__PURE__*/React.createElement(App, null));
