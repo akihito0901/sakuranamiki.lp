@@ -12,14 +12,17 @@
 
 ### 未完了タスク（2026-09-13時点）
 
-- [ ] **Xserverへのアップロード（最優先・準備完了）**
-  - 設置先: `https://sakuranamiki1.com/shinsokin/`
-  - ZIP: `C:\Users\sanji\Downloads\shinsokin_アップロード用.zip`
-  - 再生成する場合: `node tools/prerender.js && node tools/build.js xserver`
-  - 本サイトは Xserver 上の WordPress。`public_html/sakuranamiki1.com/shinsokin/` に
-    ZIPの**中身**を展開する。`.htaccess` は隠しファイルなのでアップロード漏れに注意
-  - 現状LPは Vercel と pages.dev にあり、どちらも本サイトとは別ドメイン。
-    本サイトのSEO評価が一切流れてこない状態
+- [ ] **`sakuranamiki1.com/shinsokin/` への設置（やり方が変わった）**
+  - ★**Xserverに置く計画は中止。**（2026-09-19、依頼者判断。Xserverでは何も契約しない）
+    `node tools/build.js xserver` と `dist-xserver/`、Downloadsの
+    `shinsokin_アップロード用.zip` は**もう使わない**
+  - 本サイト（`sakuranamiki-hp`）はAstroでCloudflare Pagesへ移行中。
+    LPを本サイトと同じドメインに乗せるなら、**あちらのリポジトリに
+    `/shinsokin/` として取り込む**のが筋になる
+  - 目的は変わっていない。**本サイトのSEO評価をLPに流すこと。**
+    いまLPは Vercel と pages.dev にあり、どちらも本サイトとは別ドメインなので
+    評価が一切流れてこない
+  - 着手は本サイトのドメイン切り替え（`sakuranamiki-hp` のステップ③）のあと
 
 - [ ] **本サイトに「深層筋集中整体とは」の記事を作り、LPへ内部リンクを張る**
   - **SEOの本体はこれ。** サブディレクトリに置くのは前提条件にすぎず、
@@ -28,9 +31,9 @@
     「総来院1,000名突破、Google口コミ評価星5。30代〜50代の女性に人気の
     深層筋集中整体はなぜ人気なのか？ぜひこちらの詳細ページからご確認ください」
 
-- [ ] **アップロード後: pages.dev 側を noindex にする**（同一内容の重複を避ける）
-- [ ] **アップロード後: 広告のリンク先を `/shinsokin/` に変更**
-- [ ] **アップロード後: Search Console でインデックス登録を申請**
+- [ ] **設置後: pages.dev 側を noindex にする**（同一内容の重複を避ける）
+- [ ] **設置後: 広告のリンク先を `/shinsokin/` に変更**（＝Metaの学習リセットが発生する）
+- [ ] **設置後: Search Console でインデックス登録を申請**
 
 - [ ] **★出口の運用を決める（2026-09-19にCTAを予約訴求へ戻したので急ぎ）**
   - **2026-09-19、依頼者の指示でCTAを「確認」訴求から「予約」訴求へ戻した。**
