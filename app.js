@@ -142,8 +142,8 @@ const StickyHeader = () => /*#__PURE__*/React.createElement("div", {
    ブラウザ側で切り替える処理は無い（MetaのA/BテストでURLごとに分けるため）。 */
 const HERO_VARIANTS = {
   a: {
-    src: './images/hero-shinsokin.webp',
-    alt: 'Google口コミ5.0。何度も繰り返す、そのつらさに。身体の奥深くから整える深層筋集中整体。深層筋×骨格×姿勢を整える、あなただけに合わせる整体。丁寧なカウンセリング／国家資格保有10年のキャリア／首・肩・腰のお悩みに。'
+    src: './images/hero-kubikata.webp',
+    alt: 'このくらいの症状で行っていいのかな？長年の首・肩こりを本気でどうにかしたい…そんな方も、どちらもご相談ください。首・肩こりに特化した深層筋集中整体。首・肩だけでなく、肩甲骨・胸まわり・呼吸・食いしばりまで確認し、根本から整えます。Google口コミ 地域で高評価いただいています／国家資格保有 柔道整復師による安心の施術／施術歴10年 豊富な経験と技術。'
   },
   c: {
     src: './images/hero-empathy.webp',
@@ -159,7 +159,7 @@ const Headline = () => {
   }, /*#__PURE__*/React.createElement("img", {
     src: hero.src,
     alt: hero.alt,
-    width: "940",
+    width: "941",
     height: "1672",
     fetchpriority: "high",
     "data-hero": "",

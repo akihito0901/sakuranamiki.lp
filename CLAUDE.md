@@ -70,7 +70,7 @@ GitHubに push すると Vercel も Cloudflare も自動で更新される。
 
 | | URL | ヒーロー |
 |---|---|---|
-| 本番（広告） | <https://sakuranamiki-lp.vercel.app/> | `hero-shinsokin.webp`（深層筋・Google口コミ5.0入り） |
+| 本番（広告） | <https://sakuranamiki-lp.vercel.app/> | `hero-kubikata.webp`（首・肩こり特化。2026-09-26に `hero-shinsokin.webp` から差し替え） |
 | 控え | <https://sakuranamiki-lp.vercel.app/c.html> | `hero-empathy.webp`（共感訴求） |
 | 確認用 | <https://sakuranamiki-lp.pages.dev/> ／ `/c` | 同上 |
 
@@ -81,7 +81,7 @@ GitHubに push すると Vercel も Cloudflare も自動で更新される。
   ヒーロー差し替えもこの方法で行った（学習の損失ゼロ）。
 - 逆に**リンク先URLを変えると学習はリセットされる**（クリエイティブ変更扱い）。
   A/Cテストを始めるならそのコストが必ず発生する。
-- ファイル名は中身を表す（`hero-shinsokin` / `hero-empathy`）。
+- ファイル名は中身を表す（`hero-kubikata` / `hero-empathy`。旧本番は `hero-shinsokin`）。
   `a` / `c` はURLのスロットを指すだけで、中身とは対応していない。
 - **Cloudflareは `/c`、Vercelは `/c.html`。** Vercelは `.html` を省略できない。
 - 計測: `LPView` の `variant` に `a` / `c`、Leadの `content_name` は `line_a` など。
