@@ -417,9 +417,9 @@ const FeatureSection = () => {
 const TopVoicesSection = () => {
   const ref = useFadeUp();
   const data = [{
-    name: "A.Mさん",
+    name: "A.Oさん",
     attr: "",
-    img: "./images/voice-am.webp",
+    img: "./images/voice-ao.webp",
     t: "肩こりがかなり楽になりました",
     c: "長年悩んでいた肩こりがかなり楽になりました。説明も丁寧で安心して通えています！"
   }, {
