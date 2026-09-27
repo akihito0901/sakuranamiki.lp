@@ -411,7 +411,120 @@ const FeatureSection = () => {
   }, f.desc)))));
 };
 
-/* ─── ⑧ 実績（Google口コミ）※ヒーロー直後に表示 ─── */
+/* ─── ①.5 ヒーロー直後のお客様の声（写真付き3名） ───
+   口コミ本文は下の⑧（Google口コミ）にある実際の口コミから選んでいる。作文しないこと。
+   写真は本人ではないので「※写真はイメージです」を必ず添える */
+const TopVoicesSection = () => {
+  const ref = useFadeUp();
+  const data = [{
+    name: "N.Yさん",
+    attr: "30代女性",
+    img: "./images/voice-am.webp",
+    t: "「今までの整骨院とは違う」",
+    c: "首の凝りと腰痛で悩んでいましたが、確実に良くなっているのを実感。継続したいと思える施術です。"
+  }, {
+    name: "S.Sさん",
+    attr: "30代女性",
+    img: "./images/voice-ni.webp",
+    t: "毎回赤ちゃん連れでも安心",
+    c: "産後の腰痛で来院。施術中は先生やスタッフがお世話してくれて助かりました。説明もわかりやすい。"
+  }, {
+    name: "S.Mさん",
+    attr: "40代女性",
+    img: "./images/voice-yy.webp",
+    t: "生活習慣のアドバイスも的確",
+    c: "長年悩んでいた腰痛が良くなってきました。施術だけでなくアドバイスも的確。信頼できる先生に出会えました。"
+  }];
+  const h = React.createElement;
+  const stars = cls => h("div", {
+    className: "rv-stars " + cls
+  }, [0, 1, 2, 3, 4].map(k => h(Icon, {
+    key: k,
+    name: "star",
+    className: ""
+  })));
+  const card = (d, i, pick) => h("div", {
+    key: i,
+    className: "rv-card" + (pick ? " rv-card-pick" : "")
+  }, pick && h("span", {
+    className: "rv-pick"
+  }, "PICK UP"), h("div", {
+    className: "flex items-center justify-between mb-3"
+  }, h("div", {
+    className: "flex items-center gap-2"
+  }, h("img", {
+    src: d.img,
+    alt: d.name,
+    width: "96",
+    height: "96",
+    loading: "lazy",
+    decoding: "async",
+    className: "rv-photo"
+  }), h("div", null, h("span", {
+    className: "font-bold text-skin-dark text-sm"
+  }, d.name), h("span", {
+    className: "text-[10px] text-skin-text/50 ml-2"
+  }, d.attr))), stars("rv-stars-sm")), h("p", {
+    className: "rv-card-title"
+  }, h("span", {
+    className: "rv-mark"
+  }, d.t)), h("p", {
+    className: "text-[13px] text-skin-text/70 leading-relaxed"
+  }, d.c));
+  return h("section", {
+    ref: ref,
+    id: "voices",
+    className: "fade-up w-full rv-sec"
+  }, h("div", {
+    className: "px-5 pt-12 pb-14"
+  }, h("div", {
+    className: "text-center mb-8"
+  }, h("p", {
+    className: "rv-ribbon"
+  }, "＼ 口コミで大人気！ ／"), h("h2", {
+    className: "rv-heading font-mincho"
+  }, "喜びの声が", h("br", null), h("span", {
+    className: "rv-heading-em"
+  }, "続々と"), "届いています"), h("div", {
+    className: "rv-score"
+  }, h("img", {
+    src: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
+    alt: "Google",
+    className: "h-5"
+  }), h("span", {
+    className: "rv-score-label"
+  }, "口コミ評価"), stars("rv-stars-lg"), h("span", {
+    className: "rv-score-num"
+  }, "5.0"))), h("ul", {
+    className: "rv-badges"
+  }, h("li", {
+    className: "rv-badge"
+  }, h("span", {
+    className: "rv-badge-sub"
+  }, "Google口コミ"), h("b", null, "★5.0")), h("li", {
+    className: "rv-badge"
+  }, h("span", {
+    className: "rv-badge-sub"
+  }, "30〜50代"), h("b", null, "女性に人気")), h("li", {
+    className: "rv-badge"
+  }, h("span", {
+    className: "rv-badge-sub"
+  }, "総来院"), h("b", null, "1,000名突破"))), h("div", {
+    className: "max-w-sm mx-auto rv-list"
+  }, data.map((d, i) => card(d, i, false)), h("p", {
+    className: "rv-note"
+  }, "※写真はイメージです")), h("div", {
+    className: "max-w-sm mx-auto mt-10"
+  }, h("p", {
+    className: "text-center text-[15px] font-bold text-skin-dark leading-relaxed mb-4"
+  }, "次は、", h("span", {
+    className: "text-skin-rose"
+  }, "あなたの番"), "です。"), h(LineCTA, {
+    flush: true
+  }))));
+};
+
+/* ─── ⑧ 実績（Google口コミ） ─── */
 const ReviewsSection = () => {
   const ref = useFadeUp();
   const data = [{
@@ -475,92 +588,85 @@ const ReviewsSection = () => {
     t: "相談しやすい優しい先生",
     c: "足腰の痛み、反り腰、巻き肩まで総合的に施術。駐車場代も負担してくれる心遣いが嬉しい。友人にもすすめます。"
   }];
-  const h = React.createElement;
-  const stars = cls => h("div", {
-    className: "rv-stars " + cls
-  }, [0, 1, 2, 3, 4].map(k => h(Icon, {
-    key: k,
-    name: "star",
-    className: ""
-  })));
-  const card = (d, i, pick) => h("div", {
-    key: i,
-    className: "rv-card" + (pick ? " rv-card-pick" : "")
-  }, pick && h("span", {
-    className: "rv-pick"
-  }, "PICK UP"), h("div", {
-    className: "flex items-center justify-between mb-3"
-  }, h("div", {
-    className: "flex items-center gap-2"
-  }, h("div", {
-    className: "rv-avatar"
-  }, d.name.charAt(0)), h("div", null, h("span", {
-    className: "font-bold text-skin-dark text-sm"
-  }, d.name), h("span", {
-    className: "text-[10px] text-skin-text/50 ml-2"
-  }, d.attr))), stars("rv-stars-sm")), h("p", {
-    className: "rv-card-title"
-  }, h("span", {
-    className: "rv-mark"
-  }, d.t)), h("p", {
-    className: "text-[13px] text-skin-text/70 leading-relaxed"
-  }, d.c));
-  /* 最初の4件を見せて、残りは <details> で開閉する。
-     ブラウザにReactは送られないので、useState ではなくHTMLだけで開閉できる形にしている */
-  const SHOW = 4;
-  return h("section", {
+  return /*#__PURE__*/React.createElement("div", {
     ref: ref,
-    id: "reviews",
-    className: "fade-up w-full rv-sec"
-  }, h("div", {
-    className: "px-5 pt-12 pb-14"
-  }, h("div", {
-    className: "text-center mb-8"
-  }, h("p", {
-    className: "rv-ribbon"
-  }, "＼ 口コミで大人気！ ／"), h("h2", {
-    className: "rv-heading font-mincho"
-  }, "喜びの声が", h("br", null), h("span", {
-    className: "rv-heading-em"
-  }, "続々と"), "届いています"), h("div", {
-    className: "rv-score"
-  }, h("img", {
+    className: "fade-up w-full bg-white"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "px-5 py-14"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-center mb-10"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center justify-center gap-2 mb-3"
+  }, /*#__PURE__*/React.createElement("img", {
     src: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
     alt: "Google",
     className: "h-5"
-  }), h("span", {
-    className: "rv-score-label"
-  }, "口コミ評価"), stars("rv-stars-lg"), h("span", {
-    className: "rv-score-num"
-  }, "5.0"))), h("ul", {
-    className: "rv-badges"
-  }, h("li", {
-    className: "rv-badge"
-  }, h("span", {
-    className: "rv-badge-sub"
-  }, "Google口コミ"), h("b", null, "★5.0")), h("li", {
-    className: "rv-badge"
-  }, h("span", {
-    className: "rv-badge-sub"
-  }, "30〜50代"), h("b", null, "女性に人気")), h("li", {
-    className: "rv-badge"
-  }, h("span", {
-    className: "rv-badge-sub"
-  }, "総来院"), h("b", null, "1,000名突破"))), h("div", {
-    className: "max-w-sm mx-auto rv-list"
-  }, data.slice(0, SHOW).map((d, i) => card(d, i, i === 0)), h("details", {
-    className: "rv-more"
-  }, h("summary", {
-    className: "rv-more-btn"
-  }, "口コミをもっと見る（あと", data.length - SHOW, "件）"), h("div", {
-    className: "rv-list"
-  }, data.slice(SHOW).map((d, i) => card(d, i + SHOW, false))))), h("div", {
-    className: "max-w-sm mx-auto mt-10"
-  }, h("p", {
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "font-bold text-xl text-skin-dark"
+  }, "マップの口コミ")), /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center justify-center gap-1.5"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "font-bold text-skin-dark text-lg"
+  }, "5.0"), /*#__PURE__*/React.createElement("div", {
+    className: "flex text-yellow-500 text-base gap-0.5"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "star",
+    className: ""
+  }), /*#__PURE__*/React.createElement(Icon, {
+    name: "star",
+    className: ""
+  }), /*#__PURE__*/React.createElement(Icon, {
+    name: "star",
+    className: ""
+  }), /*#__PURE__*/React.createElement(Icon, {
+    name: "star",
+    className: ""
+  }), /*#__PURE__*/React.createElement(Icon, {
+    name: "star",
+    className: ""
+  })))), /*#__PURE__*/React.createElement("div", {
+    className: "space-y-0 max-w-sm mx-auto"
+  }, data.map((d, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    className: "py-5 border-b border-skin-peach/40 last:border-b-0"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center justify-between mb-2"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center gap-2"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "w-8 h-8 bg-skin-peach flex items-center justify-center text-skin-dark font-bold text-sm"
+  }, d.name.charAt(0)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+    className: "font-bold text-skin-dark text-sm"
+  }, d.name), /*#__PURE__*/React.createElement("span", {
+    className: "text-[10px] text-skin-text/50 ml-2"
+  }, d.attr))), /*#__PURE__*/React.createElement("div", {
+    className: "flex text-yellow-500 text-[10px] gap-0.5"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "star",
+    className: ""
+  }), /*#__PURE__*/React.createElement(Icon, {
+    name: "star",
+    className: ""
+  }), /*#__PURE__*/React.createElement(Icon, {
+    name: "star",
+    className: ""
+  }), /*#__PURE__*/React.createElement(Icon, {
+    name: "star",
+    className: ""
+  }), /*#__PURE__*/React.createElement(Icon, {
+    name: "star",
+    className: ""
+  }))), /*#__PURE__*/React.createElement("p", {
+    className: "text-sm font-bold text-skin-dark mb-1"
+  }, d.t), /*#__PURE__*/React.createElement("p", {
+    className: "text-[13px] text-skin-text/60 leading-relaxed"
+  }, d.c)))), /*#__PURE__*/React.createElement("div", {
+    className: "max-w-sm mx-auto mt-10 pt-8 border-t border-skin-peach/50"
+  }, /*#__PURE__*/React.createElement("p", {
     className: "text-center text-[15px] font-bold text-skin-dark leading-relaxed mb-4"
-  }, "次は、", h("span", {
+  }, "次は、", /*#__PURE__*/React.createElement("span", {
     className: "text-skin-rose"
-  }, "あなたの番"), "です。"), h(LineCTA, {
+  }, "あなたの番"), "です。"), /*#__PURE__*/React.createElement(LineCTA, {
     flush: true
   }))));
 };
@@ -796,7 +902,7 @@ const App = () => {
   }, []);
   return /*#__PURE__*/React.createElement("div", {
     className: "w-full max-w-md mx-auto shadow-xl bg-white min-h-screen relative my-0 md:my-8"
-  }, /*#__PURE__*/React.createElement(StickyHeader, null), /*#__PURE__*/React.createElement(Headline, null), /*#__PURE__*/React.createElement(ReviewsSection, null), /*#__PURE__*/React.createElement(EmpathySection, null), /*#__PURE__*/React.createElement(ProblemSection, null), /*#__PURE__*/React.createElement(CauseSection, null), /*#__PURE__*/React.createElement(SolutionSection, null), /*#__PURE__*/React.createElement(BenefitSection, null), /*#__PURE__*/React.createElement(ClinicDifferenceSection, null), /*#__PURE__*/React.createElement(FeatureSection, null), /*#__PURE__*/React.createElement(ComparisonSection, null), /*#__PURE__*/React.createElement(QASection, null), /*#__PURE__*/React.createElement(FinalCTA, null), /*#__PURE__*/React.createElement(Footer, null), /*#__PURE__*/React.createElement(StickyCTA, null));
+  }, /*#__PURE__*/React.createElement(StickyHeader, null), /*#__PURE__*/React.createElement(Headline, null), /*#__PURE__*/React.createElement(TopVoicesSection, null), /*#__PURE__*/React.createElement(EmpathySection, null), /*#__PURE__*/React.createElement(ProblemSection, null), /*#__PURE__*/React.createElement(CauseSection, null), /*#__PURE__*/React.createElement(SolutionSection, null), /*#__PURE__*/React.createElement(BenefitSection, null), /*#__PURE__*/React.createElement(ClinicDifferenceSection, null), /*#__PURE__*/React.createElement(FeatureSection, null), /*#__PURE__*/React.createElement(ComparisonSection, null), /*#__PURE__*/React.createElement(ReviewsSection, null), /*#__PURE__*/React.createElement(QASection, null), /*#__PURE__*/React.createElement(FinalCTA, null), /*#__PURE__*/React.createElement(Footer, null), /*#__PURE__*/React.createElement(StickyCTA, null));
 };
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(/*#__PURE__*/React.createElement(App, null));
