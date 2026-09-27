@@ -126,3 +126,41 @@
             display: inline-block;
         }
     
+
+/* ── 口コミセクション（rv-）2026-09-27追加 ──
+   styles.css は再ビルドできないため、新しい装飾は手書きで末尾に足している。
+   src.css にも同じものを置いてある（再ビルドする日が来たら src.css が正） */
+.rv-sec{position:relative;overflow:hidden;background:radial-gradient(120% 60% at 50% 0%,#fce8df 0%,#fff8f5 55%,#fff 100%)}
+.rv-sec::before,.rv-sec::after{content:"";position:absolute;border-radius:9999px;background:#f5cec7;opacity:.35;pointer-events:none}
+.rv-sec::before{width:180px;height:180px;top:-60px;left:-70px}
+.rv-sec::after{width:140px;height:140px;bottom:120px;right:-60px}
+.rv-sec>div{position:relative;z-index:1}
+.rv-ribbon{display:inline-block;margin-bottom:.9rem;padding:.35rem 1.1rem;border-radius:9999px;background:linear-gradient(90deg,#e8a5a0,#d4847e);color:#fff;font-weight:700;font-size:.95rem;letter-spacing:.06em;box-shadow:0 4px 12px rgba(212,132,126,.35);animation:rv-bob 2.4s ease-in-out infinite}
+@keyframes rv-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.rv-heading{font-size:1.65rem;line-height:1.45;font-weight:700;color:#6b4545;margin-bottom:1.1rem}
+.rv-heading-em{color:#d4847e;font-size:2rem;background:linear-gradient(transparent 65%,#fde68a 65%);padding:0 .15em}
+.rv-score{display:inline-flex;align-items:center;gap:.45rem;padding:.55rem 1rem;background:#fff;border:2px solid #e9c46a;border-radius:9999px;box-shadow:0 6px 18px rgba(233,196,106,.28)}
+.rv-score-label{font-weight:700;color:#6b4545;font-size:.85rem}
+.rv-score-num{font-weight:800;font-size:1.5rem;line-height:1;background:linear-gradient(180deg,#f7c948,#d69e1b);-webkit-background-clip:text;background-clip:text;color:transparent}
+.rv-stars{display:flex;gap:.1rem;color:#f5b400}
+.rv-stars-lg{font-size:1.05rem}
+.rv-stars-sm{font-size:.65rem}
+.rv-badges{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;max-width:24rem;margin:0 auto 2rem;padding:0;list-style:none}
+.rv-badge{aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border-radius:9999px;background:radial-gradient(circle at 50% 35%,#fff 0%,#fff8ec 70%);border:2px solid #e9c46a;box-shadow:0 0 0 4px #fff,0 0 0 5px #f1dca0,0 6px 14px rgba(107,69,69,.12);color:#6b4545;line-height:1.3}
+.rv-badge b{display:block;font-size:.9rem;font-weight:800;color:#b7791f}
+.rv-badge-sub{display:block;font-size:.66rem;font-weight:700;color:#8a7070}
+.rv-list>*+*{margin-top:.9rem}
+.rv-more{margin-top:.9rem}
+.rv-card{position:relative;background:#fff;border-radius:16px;padding:1.1rem 1.1rem 1.15rem;box-shadow:0 4px 16px rgba(107,69,69,.08);border:1px solid #fce8df}
+.rv-card::before{content:"\201C";position:absolute;top:-.35rem;right:.9rem;font-family:Georgia,serif;font-size:3.2rem;line-height:1;color:#f5cec7}
+.rv-card-pick{border:2px solid #e8a5a0;box-shadow:0 8px 22px rgba(212,132,126,.22)}
+.rv-pick{position:absolute;top:-.7rem;left:1rem;padding:.15rem .6rem;border-radius:9999px;background:#d4847e;color:#fff;font-size:.62rem;font-weight:800;letter-spacing:.1em}
+.rv-avatar{width:2rem;height:2rem;border-radius:9999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#fce8df,#f5cec7);color:#6b4545;font-weight:700;font-size:.85rem}
+.rv-card-title{font-size:.95rem;font-weight:700;color:#6b4545;margin-bottom:.35rem}
+.rv-mark{background:linear-gradient(transparent 62%,#fce8df 62%)}
+.rv-more>summary{list-style:none}
+.rv-more>summary::-webkit-details-marker{display:none}
+.rv-more-btn{display:block;cursor:pointer;text-align:center;padding:.75rem 1rem;border-radius:9999px;border:2px solid #e8a5a0;background:#fff;color:#d4847e;font-weight:700;font-size:.9rem}
+.rv-more-btn::after{content:" ▼";font-size:.7em}
+.rv-more[open]>.rv-more-btn{display:none}
+.rv-more>.rv-list{margin-top:0}
