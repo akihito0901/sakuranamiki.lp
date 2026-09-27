@@ -412,28 +412,28 @@ const FeatureSection = () => {
 };
 
 /* ─── ①.5 ヒーロー直後のお客様の声（写真付き3名） ───
-   口コミ本文は下の⑧（Google口コミ）にある実際の口コミから選んでいる。作文しないこと。
-   写真は本人ではないので「※写真はイメージです」を必ず添える */
+   写真と本文はご本人のもの（2026-09-27 依頼者から受領）。本文は作文しないこと。
+   年代は受け取っていないので表示しない。見出しは本文からの抜き出し */
 const TopVoicesSection = () => {
   const ref = useFadeUp();
   const data = [{
-    name: "N.Yさん",
-    attr: "30代女性",
+    name: "A.Mさん",
+    attr: "",
     img: "./images/voice-am.webp",
-    t: "「今までの整骨院とは違う」",
-    c: "首の凝りと腰痛で悩んでいましたが、確実に良くなっているのを実感。継続したいと思える施術です。"
+    t: "肩こりがかなり楽になりました",
+    c: "長年悩んでいた肩こりがかなり楽になりました。説明も丁寧で安心して通えています！"
   }, {
-    name: "S.Sさん",
-    attr: "30代女性",
+    name: "N.Iさん",
+    attr: "",
     img: "./images/voice-ni.webp",
-    t: "毎回赤ちゃん連れでも安心",
-    c: "産後の腰痛で来院。施術中は先生やスタッフがお世話してくれて助かりました。説明もわかりやすい。"
+    t: "施術後は身体がスッキリ",
+    c: "子育てで腰がつらかったのですが、施術後は身体がスッキリ。先生も話しやすくて通いやすいです！"
   }, {
-    name: "S.Mさん",
-    attr: "40代女性",
+    name: "Y.Yさん",
+    attr: "",
     img: "./images/voice-yy.webp",
-    t: "生活習慣のアドバイスも的確",
-    c: "長年悩んでいた腰痛が良くなってきました。施術だけでなくアドバイスも的確。信頼できる先生に出会えました。"
+    t: "優しく説明してもらえて安心しました",
+    c: "初めての整体で少し不安でしたが、優しく説明してもらえて安心しました。身体の変化も実感できています！"
   }];
   const h = React.createElement;
   const stars = cls => h("div", {
@@ -462,7 +462,7 @@ const TopVoicesSection = () => {
     className: "rv-photo"
   }), h("div", null, h("span", {
     className: "font-bold text-skin-dark text-sm"
-  }, d.name), h("span", {
+  }, d.name), d.attr && h("span", {
     className: "text-[10px] text-skin-text/50 ml-2"
   }, d.attr))), stars("rv-stars-sm")), h("p", {
     className: "rv-card-title"
@@ -476,7 +476,7 @@ const TopVoicesSection = () => {
     id: "voices",
     className: "fade-up w-full rv-sec"
   }, h("div", {
-    className: "px-5 pt-12 pb-14"
+    className: "px-5 pt-12 rv-inner"
   }, h("div", {
     className: "text-center mb-8"
   }, h("p", {
@@ -511,9 +511,7 @@ const TopVoicesSection = () => {
     className: "rv-badge-sub"
   }, "総来院"), h("b", null, "1,000名突破"))), h("div", {
     className: "max-w-sm mx-auto rv-list"
-  }, data.map((d, i) => card(d, i, false)), h("p", {
-    className: "rv-note"
-  }, "※写真はイメージです")), h("div", {
+  }, data.map((d, i) => card(d, i, false))), h("div", {
     className: "max-w-sm mx-auto mt-10"
   }, h("p", {
     className: "text-center text-[15px] font-bold text-skin-dark leading-relaxed mb-4"
@@ -634,7 +632,7 @@ const ReviewsSection = () => {
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex items-center gap-2"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "w-8 h-8 bg-skin-peach flex items-center justify-center text-skin-dark font-bold text-sm"
+    className: "w-8 h-8 rounded-full bg-skin-peach flex items-center justify-center text-skin-dark font-bold text-sm"
   }, d.name.charAt(0)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
     className: "font-bold text-skin-dark text-sm"
   }, d.name), /*#__PURE__*/React.createElement("span", {
