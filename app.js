@@ -752,13 +752,7 @@ const QASection = () => {
     className: "text-skin-pink font-bold text-base"
   }, "A"), /*#__PURE__*/React.createElement("p", {
     className: "text-sm text-skin-text/70 leading-relaxed whitespace-pre-line"
-  }, item.a)))))), /*#__PURE__*/React.createElement("div", {
-    className: "max-w-sm mx-auto mt-9"
-  }, /*#__PURE__*/React.createElement("p", {
-    className: "text-center text-[13px] text-skin-text/70 leading-relaxed mb-4"
-  }, "その他のご質問も、", /*#__PURE__*/React.createElement("br", null), "LINEからお気軽にどうぞ。"), /*#__PURE__*/React.createElement(LineCTA, {
-    flush: true
-  }))));
+  }, item.a))))))));
 };
 
 /* ─── ⑩ CTA + LINE特典 (最後の一押し) ─── */
