@@ -593,15 +593,9 @@ const TopVoicesSection = () => {
     className: "rv-badge-sub"
   }, "総来院"), h("b", null, "1,000名突破"))), h("div", {
     className: "max-w-sm mx-auto rv-list"
-  }, data.map((d, i) => card(d, i, false))), h("div", {
-    className: "max-w-sm mx-auto mt-10"
-  }, h("p", {
-    className: "text-center text-[15px] font-bold text-skin-dark leading-relaxed mb-4"
-  }, "次は、", h("span", {
-    className: "text-skin-rose"
-  }, "あなたの番"), "です。"), h(LineCTA, {
-    flush: true
-  }))));
+  }, data.map((d, i) => card(d, i, false)))
+  /* 下のCTA（「次は、あなたの番です。」＋LINE）は 2026-10-02 に削除（依頼者の指示）。
+     すぐ下にGoogle口コミ一覧が続き、その末尾にCTAがあるため */));
 };
 
 /* ─── ⑧ 実績（その他のGoogleマップ口コミ。写真付き3名の下に置く。全件出しっぱなし） ─── */
