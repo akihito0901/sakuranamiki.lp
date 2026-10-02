@@ -71,7 +71,7 @@ GitHubに push すると Vercel も Cloudflare も自動で更新される。
 
 | | URL | ヒーロー |
 |---|---|---|
-| 本番（広告） | <https://sakuranamiki-lp.vercel.app/> | `hero-video.mp4`（動画。poster は `hero-video-poster.webp`。2026-10-02に `hero-kubikata.webp` から差し替え） |
+| 本番（広告） | <https://sakuranamiki-lp.vercel.app/> | `hero-katakoshi.mp4`（肩こり・腰痛の動画。poster は `hero-katakoshi-poster.webp`。2026-10-02午後に `hero-video.mp4` から差し替え。元71MB → 940px・30fps・音声なし・2パス1.4Mbpsで3.0MB） |
 | 控え | <https://sakuranamiki-lp.vercel.app/c.html> | `hero-empathy.webp`（共感訴求） |
 | 確認用 | <https://sakuranamiki-lp.pages.dev/> ／ `/c` | 同上 |
 

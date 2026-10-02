@@ -144,11 +144,13 @@ const StickyHeader = () => /*#__PURE__*/React.createElement("div", {
    ブラウザ側で切り替える処理は無い（MetaのA/BテストでURLごとに分けるため）。 */
 const HERO_VARIANTS = {
   /* 2026-10-02 に静止画（hero-kubikata.webp）から動画へ差し替え（依頼者の指示）。
+     同日午後、肩こり・腰痛版の動画（hero-katakoshi.mp4）に再差し替え。
+     画像は1日キャッシュなので、差し替えはファイル名ごと変えている。
      文字は動画に焼き込まれている。poster は1コマ目で、動画の読み込み前に出る */
   a: {
-    video: './images/hero-video.mp4',
-    src: './images/hero-video-poster.webp',
-    alt: 'このくらいの症状で行っていいのかな？長年の首・肩こりを本気でどうにかしたい…そんな方も、どちらもご相談ください。首・肩こりに特化した深層筋集中整体。首・肩だけでなく、肩甲骨・胸まわり・呼吸・食いしばりまで確認し、根本から整えます。Google口コミ★5／施術歴10年／国家資格保有。初回体験 通常価格7,500円（税込）のところ2,980円（税込）。'
+    video: './images/hero-katakoshi.mp4',
+    src: './images/hero-katakoshi-poster.webp',
+    alt: '肩こり・腰痛がスッと消える。深層筋集中整体。体の芯・土台から整え、痛みの出にくい体へ。10年の経験／国家資格保有／口コミ評価★5。初回限定 通常7,500円（税込）のところ2,980円（税込）。清潔で落ち着いた院内で、安心して施術を受けられます。'
   },
   c: {
     src: './images/hero-empathy.webp',
@@ -165,7 +167,7 @@ const Headline = () => {
     src: hero.video,
     poster: hero.src,
     width: "940",
-    height: "1672",
+    height: "1670",
     autoPlay: true,
     muted: true,
     loop: true,
