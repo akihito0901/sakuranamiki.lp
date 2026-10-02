@@ -55,12 +55,18 @@
      実際の予約数とは連動していない。日付は端末の時計ではなく日本時間で判定する。
      表を変えるときは app.js の SLOTS も揃えること（プリレンダ時の初期値に使う）。 */
   var SLOTS = [10, 8, 6, 3];
+  /* ★手動で数字を下げるときはここだけ書き換える（app.js の SLOTS_MANUAL も揃える）。
+     書いた月の間だけ効き、翌月は自動で 10 名から始まる。
+     日付の表より少ないほうを出すので、9 名にしても 9日以降は 8 → 6 → 3 と下がっていく。 */
+  var SLOTS_MANUAL = { month: '2026-10', count: 9 };
   var slotEls = document.querySelectorAll('[data-slots-count]');
   if (slotEls.length) {
     var jst = new Date(Date.now() + 9 * 3600 * 1000);
     var y = jst.getUTCFullYear(), mo = jst.getUTCMonth(), day = jst.getUTCDate();
     var days = new Date(Date.UTC(y, mo + 1, 0)).getUTCDate();
     var left = SLOTS[Math.min(3, Math.floor((day - 1) / (days / 4)))];
+    var ym = y + '-' + (mo < 9 ? '0' : '') + (mo + 1);
+    if (SLOTS_MANUAL && SLOTS_MANUAL.month === ym) left = Math.min(left, SLOTS_MANUAL.count);
     for (var si = 0; si < slotEls.length; si++) slotEls[si].textContent = String(left);
   }
 

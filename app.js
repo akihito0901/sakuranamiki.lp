@@ -442,9 +442,13 @@ const FeatureSection = () => {
    ここで描くのはプリレンダ時点の値で、ブラウザでは lp.js が日本時間の今日で
    書き換える（[data-slots-count]）。表を変えるときは lp.js の SLOTS も揃えること。 */
 const SLOTS = [10, 8, 6, 3];
+/* 手動で下げた値（lp.js の SLOTS_MANUAL と揃える）。その月の間だけ効く */
+const SLOTS_MANUAL = { month: '2026-10', count: 9 };
 const slotsFor = d => {
   const days = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
-  return SLOTS[Math.min(3, Math.floor((d.getDate() - 1) / (days / 4)))];
+  const auto = SLOTS[Math.min(3, Math.floor((d.getDate() - 1) / (days / 4)))];
+  const ym = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
+  return SLOTS_MANUAL.month === ym ? Math.min(auto, SLOTS_MANUAL.count) : auto;
 };
 const AvailabilitySection = () => {
   const ref = useFadeUp();
