@@ -26,6 +26,8 @@ const ICONS = {
   "line": ["0 0 512 512", "M311 196.8v81.3c0 2.1-1.6 3.7-3.7 3.7h-13c-1.3 0-2.4-.7-3-1.5l-37.3-50.3v48.2c0 2.1-1.6 3.7-3.7 3.7h-13c-2.1 0-3.7-1.6-3.7-3.7V196.9c0-2.1 1.6-3.7 3.7-3.7h12.9c1.1 0 2.4 .6 3 1.6l37.3 50.3V196.9c0-2.1 1.6-3.7 3.7-3.7h13c2.1-.1 3.8 1.6 3.8 3.5zm-93.7-3.7h-13c-2.1 0-3.7 1.6-3.7 3.7v81.3c0 2.1 1.6 3.7 3.7 3.7h13c2.1 0 3.7-1.6 3.7-3.7V196.8c0-1.9-1.6-3.7-3.7-3.7zm-31.4 68.1H150.3V196.8c0-2.1-1.6-3.7-3.7-3.7h-13c-2.1 0-3.7 1.6-3.7 3.7v81.3c0 1 .3 1.8 1 2.5c.7 .6 1.5 1 2.5 1h52.2c2.1 0 3.7-1.6 3.7-3.7v-13c0-1.9-1.6-3.7-3.5-3.7zm193.7-68.1H327.3c-1.9 0-3.7 1.6-3.7 3.7v81.3c0 1.9 1.6 3.7 3.7 3.7h52.2c2.1 0 3.7-1.6 3.7-3.7V265c0-2.1-1.6-3.7-3.7-3.7H344V247.7h35.5c2.1 0 3.7-1.6 3.7-3.7V230.9c0-2.1-1.6-3.7-3.7-3.7H344V213.5h35.5c2.1 0 3.7-1.6 3.7-3.7v-13c-.1-1.9-1.7-3.7-3.7-3.7zM512 93.4V419.4c-.1 51.2-42.1 92.7-93.4 92.6H92.6C41.4 511.9-.1 469.8 0 418.6V92.6C.1 41.4 42.2-.1 93.4 0H419.4c51.2 .1 92.7 42.1 92.6 93.4zM441.6 233.5c0-83.4-83.7-151.3-186.4-151.3s-186.4 67.9-186.4 151.3c0 74.7 66.3 137.4 155.9 149.3c21.8 4.7 19.3 12.7 14.4 42.1c-.8 4.7-3.8 18.4 16.1 10.1s107.3-63.2 146.5-108.2c27-29.7 39.9-59.8 39.9-93.1z"],
   "location-dot": ["0 0 384 512", "M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"],
   "phone-flip": ["0 0 512 512", "M347.1 24.6c7.7-18.6 28-28.5 47.4-23.2l88 24C499.9 30.2 512 46 512 64c0 247.4-200.6 448-448 448c-18 0-33.8-12.1-38.6-29.5l-24-88c-5.3-19.4 4.6-39.7 23.2-47.4l96-40c16.3-6.8 35.2-2.1 46.3 11.6L207.3 368c70.4-33.3 127.4-90.3 160.7-160.7L318.7 167c-13.7-11.2-18.4-30-11.6-46.3l40-96z"],
+  "calendar-check": ["0 0 448 512", "M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zM329 305c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-87 87-39-39c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l56 56c9.4 9.4 24.6 9.4 33.9 0L329 305z"],
+  "circle-check": ["0 0 512 512", "M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"],
   "star": ["0 0 576 512", "M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"]
 };
 const Icon = ({
@@ -430,6 +432,60 @@ const FeatureSection = () => {
   }, f.title), /*#__PURE__*/React.createElement("p", {
     className: "text-sm text-skin-text/70 leading-relaxed"
   }, f.desc)))));
+};
+
+/* ─── ⑦.8 今月の残り枠 ───
+   2026-10-02 追加（依頼者の指示）。デザインは平成よしずみ整骨院LPの「今週の予約枠」と同じ。
+   新規の受付は月10名ほどという前提で、月を4つに分けて表示を減らしていく。
+     1〜4分の1: 10名 ／ 〜2分の1: 8名 ／ 〜4分の3: 6名 ／ 残り: 3名
+   ★実際の予約数とは連動していない（日付だけで決まる）。
+   ここで描くのはプリレンダ時点の値で、ブラウザでは lp.js が日本時間の今日で
+   書き換える（[data-slots-count]）。表を変えるときは lp.js の SLOTS も揃えること。 */
+const SLOTS = [10, 8, 6, 3];
+const slotsFor = d => {
+  const days = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
+  return SLOTS[Math.min(3, Math.floor((d.getDate() - 1) / (days / 4)))];
+};
+const AvailabilitySection = () => {
+  const ref = useFadeUp();
+  const check = text => /*#__PURE__*/React.createElement("p", {
+    className: "flex items-start gap-2 text-sm text-skin-dark font-bold leading-relaxed",
+    style: { margin: "0 0 12px" }
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "circle-check",
+    className: "text-skin-rose mt-1 flex-shrink-0"
+  }), /*#__PURE__*/React.createElement("span", null, text));
+  return /*#__PURE__*/React.createElement("section", {
+    ref: ref,
+    className: "fade-up w-full bg-skin-cream",
+    style: { borderTop: "4px solid #9dc6d8" }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "px-6 pt-12 text-center",
+    style: { paddingBottom: "44px" }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mb-6"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "bg-skin-rose text-white text-xs font-black px-4 py-2 rounded-full tracking-widest",
+    style: { display: "inline-flex", alignItems: "center", gap: "8px", boxShadow: "0 6px 18px rgba(90,139,163,0.28)" }
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "calendar-check"
+  }), "今月の予約受付中")), /*#__PURE__*/React.createElement("p", {
+    className: "text-skin-dark font-bold text-lg mb-2 leading-relaxed"
+  }, "今月の残り枠は"), /*#__PURE__*/React.createElement("p", {
+    style: { color: "#d9736e", marginBottom: "28px" }
+  }, /*#__PURE__*/React.createElement("span", {
+    "data-slots-count": "",
+    className: "font-black leading-none tracking-tight",
+    style: { fontSize: "68px" }
+  }, slotsFor(new Date())), /*#__PURE__*/React.createElement("span", {
+    className: "text-2xl font-black ml-1"
+  }, "名")), /*#__PURE__*/React.createElement("div", {
+    className: "max-w-xs mx-auto text-left",
+    style: { marginBottom: "28px", padding: "20px 0 8px", borderTop: "1px solid rgba(157,198,216,0.6)", borderBottom: "1px solid rgba(157,198,216,0.6)" }
+  }, check(/*#__PURE__*/React.createElement(React.Fragment, null, "院長が最初から最後まで担当するため", /*#__PURE__*/React.createElement("br", null), "ご案内できる人数を限定しています")), check(/*#__PURE__*/React.createElement(React.Fragment, null, "新規の方の受付は", /*#__PURE__*/React.createElement("br", null), "月10名ほどまでとしています"))), /*#__PURE__*/React.createElement("p", {
+    className: "font-black text-xl",
+    style: { color: "#d9736e", marginBottom: "28px" }
+  }, "ご予約はお早めに！"), /*#__PURE__*/React.createElement(LineCTA, null)));
 };
 
 /* ─── ⑦.9 お客様の声（写真付き3名） ───
@@ -927,7 +983,7 @@ const App = () => {
   }, []);
   return /*#__PURE__*/React.createElement("div", {
     className: "w-full max-w-md mx-auto shadow-xl bg-white min-h-screen relative my-0 md:my-8"
-  }, /*#__PURE__*/React.createElement(StickyHeader, null), /*#__PURE__*/React.createElement(Headline, null), /*#__PURE__*/React.createElement(EmpathySection, null), /*#__PURE__*/React.createElement(ProblemSection, null), /*#__PURE__*/React.createElement(FeatureSection, null), /*#__PURE__*/React.createElement(SolutionSection, null), /*#__PURE__*/React.createElement(BenefitSection, null), /*#__PURE__*/React.createElement(ClinicDifferenceSection, null), /*#__PURE__*/React.createElement(ComparisonSection, null), /*#__PURE__*/React.createElement(TopVoicesSection, null), /*#__PURE__*/React.createElement(ReviewsSection, null), /*#__PURE__*/React.createElement(QASection, null), /*#__PURE__*/React.createElement(FinalCTA, null), /*#__PURE__*/React.createElement(Footer, null), /*#__PURE__*/React.createElement(StickyCTA, null));
+  }, /*#__PURE__*/React.createElement(StickyHeader, null), /*#__PURE__*/React.createElement(Headline, null), /*#__PURE__*/React.createElement(EmpathySection, null), /*#__PURE__*/React.createElement(ProblemSection, null), /*#__PURE__*/React.createElement(FeatureSection, null), /*#__PURE__*/React.createElement(SolutionSection, null), /*#__PURE__*/React.createElement(BenefitSection, null), /*#__PURE__*/React.createElement(ClinicDifferenceSection, null), /*#__PURE__*/React.createElement(ComparisonSection, null), /*#__PURE__*/React.createElement(AvailabilitySection, null), /*#__PURE__*/React.createElement(TopVoicesSection, null), /*#__PURE__*/React.createElement(ReviewsSection, null), /*#__PURE__*/React.createElement(QASection, null), /*#__PURE__*/React.createElement(FinalCTA, null), /*#__PURE__*/React.createElement(Footer, null), /*#__PURE__*/React.createElement(StickyCTA, null));
 };
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(/*#__PURE__*/React.createElement(App, null));

@@ -50,6 +50,20 @@
     for (var k = 0; k < ctas.length; k++) ctaObs.observe(ctas[k]);
   }
 
+  /* ── 今月の残り枠 ──
+     月を4つに分けて 10 → 8 → 6 → 3 名と減らす（依頼者の指示、2026-10-02）。
+     実際の予約数とは連動していない。日付は端末の時計ではなく日本時間で判定する。
+     表を変えるときは app.js の SLOTS も揃えること（プリレンダ時の初期値に使う）。 */
+  var SLOTS = [10, 8, 6, 3];
+  var slotEls = document.querySelectorAll('[data-slots-count]');
+  if (slotEls.length) {
+    var jst = new Date(Date.now() + 9 * 3600 * 1000);
+    var y = jst.getUTCFullYear(), mo = jst.getUTCMonth(), day = jst.getUTCDate();
+    var days = new Date(Date.UTC(y, mo + 1, 0)).getUTCDate();
+    var left = SLOTS[Math.min(3, Math.floor((day - 1) / (days / 4)))];
+    for (var si = 0; si < slotEls.length; si++) slotEls[si].textContent = String(left);
+  }
+
   /* ── よくあるご質問の開閉 ──
      開いている項目は一度にひとつ。Reactの openIdx と同じ挙動。 */
   var OPEN = ['max-h-[800px]', 'opacity-100', 'pb-4'];
