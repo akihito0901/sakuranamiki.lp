@@ -104,9 +104,9 @@ const LineCTA = ({
     className: "text-4xl drop-shadow-md"
   }), /*#__PURE__*/React.createElement("span", {
     className: "text-[17px] sm:text-xl font-black tracking-tight leading-snug"
-  }, "LINEで", /*#__PURE__*/React.createElement("br", {
+  }, "今すぐLINEで", /*#__PURE__*/React.createElement("br", {
     className: "sm:hidden"
-  }), "ご予約はこちら")), /*#__PURE__*/React.createElement("span", {
+  }), "空き状況を確認する")), /*#__PURE__*/React.createElement("span", {
     className: "text-[10px] mt-1 opacity-80"
   }, "※タップするとLINEアプリが開きます"))));
 };
@@ -229,23 +229,6 @@ const ProblemSection = () => {
     decoding: "async",
     alt: "そのまま放置しておくと… 慢性的な痛みが続き、改善しにくくなる／姿勢が崩れ、見た目が老けて見える／疲れやすくなり、日常生活の質が低下／自律神経が乱れ、不調が広がっていく／将来的に、大きな不調につながる。",
     className: "w-full h-auto block drop-shadow-sm"
-  }));
-};
-
-/* ─── ④ 原因の提示 ─── */
-const CauseSection = () => {
-  const ref = useFadeUp();
-  return /*#__PURE__*/React.createElement("div", {
-    ref: ref,
-    className: "fade-up w-full"
-  }, /*#__PURE__*/React.createElement("img", {
-    src: "./images/cause-new-image.webp",
-    width: 941,
-    height: 1672,
-    loading: "lazy",
-    decoding: "async",
-    alt: "なぜ肩や腰は何度も戻るのか？ 多くの整体では痛い場所を揉みます。でも姿勢・関節の動き・呼吸・身体を支える深層筋が変わっていなければ、数日後にはまた元通りになります。「また戻った」を繰り返していませんか？",
-    className: "w-full h-auto block"
   }));
 };
 
@@ -449,8 +432,8 @@ const FeatureSection = () => {
   }, f.desc)))));
 };
 
-/* ─── ⑧.5 お客様の声（写真付き3名） ───
-   2026-10-02 にヒーロー直後からGoogle口コミの下へ移動（依頼者の指示）。
+/* ─── ⑦.9 お客様の声（写真付き3名） ───
+   2026-10-02 にヒーロー直後から、Google口コミ一覧の直前へ移動（依頼者の指示）。
    写真と本文はご本人のもの（2026-09-27 依頼者から受領）。本文は作文しないこと。
    年代は受け取っていないので表示しない。見出しは本文からの抜き出し */
 const TopVoicesSection = () => {
@@ -561,7 +544,7 @@ const TopVoicesSection = () => {
   }))));
 };
 
-/* ─── ⑧ 実績（Google口コミ） ─── */
+/* ─── ⑧ 実績（その他のGoogleマップ口コミ。写真付き3名の下に置く。全件出しっぱなし） ─── */
 const ReviewsSection = () => {
   const ref = useFadeUp();
   const data = [{
@@ -634,7 +617,9 @@ const ReviewsSection = () => {
     className: "text-center mb-10"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex items-center justify-center gap-2 mb-3"
-  }, /*#__PURE__*/React.createElement("img", {
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "font-bold text-xl text-skin-dark"
+  }, "その他の"), /*#__PURE__*/React.createElement("img", {
     src: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
     alt: "Google",
     className: "h-5"
@@ -856,9 +841,9 @@ const FinalCTA = () => {
     className: "bg-skin-dark px-4 pt-8 pb-10"
   }, /*#__PURE__*/React.createElement("p", {
     className: "text-center text-[11px] font-bold tracking-[0.16em] text-skin-peach mb-3"
-  }, "＼ ご予約はこちら ／"), /*#__PURE__*/React.createElement("p", {
+  }, "＼ 確認だけでも大丈夫です ／"), /*#__PURE__*/React.createElement("p", {
     className: "text-center text-[13px] leading-relaxed text-white/75 mb-5"
-  }, "ご予約はLINEから", /*#__PURE__*/React.createElement("br", null), "24時間受け付けています。"), /*#__PURE__*/React.createElement(LineCTA, {
+  }, "ご予約・空き状況の確認は", /*#__PURE__*/React.createElement("br", null), "LINEから24時間受け付けています。"), /*#__PURE__*/React.createElement(LineCTA, {
     flush: true
   }), /*#__PURE__*/React.createElement("a", {
     href: "tel:070-5530-6656",
@@ -915,16 +900,25 @@ const StickyCTA = () => /*#__PURE__*/React.createElement("div", {
   className: "sticky-cta-arrow"
 }, "▼")),
 
-/* 電話ボタンは削除した。Clarityの計測でほとんどタップされておらず、
-   LINEボタンの幅を狭めるだけだったため。電話は最終CTAに残してある。 */
-/*#__PURE__*/React.createElement("a", {
+/* 電話ボタンは 9/12 に一度削除し（Clarityでほとんどタップされていなかった）、
+   2026-10-02 に依頼者の指示で戻した。LINEと半分ずつ */
+/*#__PURE__*/React.createElement("div", {
+  className: "flex gap-2"
+}, /*#__PURE__*/React.createElement("a", {
+  href: "tel:070-5530-6656",
+  onClick: () => window.trackTel(),
+  className: "flex-1 flex items-center justify-center bg-skin-rose text-white rounded-full py-3 shadow-md active:scale-95 transition-all text-[13px] font-bold leading-tight text-center"
+}, /*#__PURE__*/React.createElement(Icon, {
+  name: "phone-flip",
+  className: "text-xl mr-2"
+}), /*#__PURE__*/React.createElement("span", null, "今すぐ電話で", /*#__PURE__*/React.createElement("br", null), "来店予約")), /*#__PURE__*/React.createElement("a", {
   href: "https://lin.ee/uqCRkRL",
   onClick: () => window.trackLead(),
-  className: "sticky-cta-glow w-full flex items-center justify-center bg-[#06C755] text-white rounded-full py-3 shadow-md active:scale-95 transition-all text-[15px] font-bold leading-tight text-center"
+  className: "sticky-cta-glow flex-1 flex items-center justify-center bg-[#06C755] text-white rounded-full py-3 shadow-md active:scale-95 transition-all text-[13px] font-bold leading-tight text-center"
 }, /*#__PURE__*/React.createElement(Icon, {
   name: "line",
   className: "text-2xl mr-2"
-}), /*#__PURE__*/React.createElement("span", null, "LINEでご予約はこちら"))));
+}), /*#__PURE__*/React.createElement("span", null, "LINEで空き状況を", /*#__PURE__*/React.createElement("br", null), "今すぐ確認")))));
 
 /* ─── App ─── */
 const App = () => {
@@ -933,7 +927,7 @@ const App = () => {
   }, []);
   return /*#__PURE__*/React.createElement("div", {
     className: "w-full max-w-md mx-auto shadow-xl bg-white min-h-screen relative my-0 md:my-8"
-  }, /*#__PURE__*/React.createElement(StickyHeader, null), /*#__PURE__*/React.createElement(Headline, null), /*#__PURE__*/React.createElement(EmpathySection, null), /*#__PURE__*/React.createElement(ProblemSection, null), /*#__PURE__*/React.createElement(FeatureSection, null), /*#__PURE__*/React.createElement(CauseSection, null), /*#__PURE__*/React.createElement(SolutionSection, null), /*#__PURE__*/React.createElement(BenefitSection, null), /*#__PURE__*/React.createElement(ClinicDifferenceSection, null), /*#__PURE__*/React.createElement(ComparisonSection, null), /*#__PURE__*/React.createElement(ReviewsSection, null), /*#__PURE__*/React.createElement(TopVoicesSection, null), /*#__PURE__*/React.createElement(QASection, null), /*#__PURE__*/React.createElement(FinalCTA, null), /*#__PURE__*/React.createElement(Footer, null), /*#__PURE__*/React.createElement(StickyCTA, null));
+  }, /*#__PURE__*/React.createElement(StickyHeader, null), /*#__PURE__*/React.createElement(Headline, null), /*#__PURE__*/React.createElement(EmpathySection, null), /*#__PURE__*/React.createElement(ProblemSection, null), /*#__PURE__*/React.createElement(FeatureSection, null), /*#__PURE__*/React.createElement(SolutionSection, null), /*#__PURE__*/React.createElement(BenefitSection, null), /*#__PURE__*/React.createElement(ClinicDifferenceSection, null), /*#__PURE__*/React.createElement(ComparisonSection, null), /*#__PURE__*/React.createElement(TopVoicesSection, null), /*#__PURE__*/React.createElement(ReviewsSection, null), /*#__PURE__*/React.createElement(QASection, null), /*#__PURE__*/React.createElement(FinalCTA, null), /*#__PURE__*/React.createElement(Footer, null), /*#__PURE__*/React.createElement(StickyCTA, null));
 };
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(/*#__PURE__*/React.createElement(App, null));
