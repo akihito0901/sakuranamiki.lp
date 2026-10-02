@@ -141,8 +141,11 @@ const StickyHeader = () => /*#__PURE__*/React.createElement("div", {
    tools/prerender.js が index.html には a、c.html には c を焼き込むため、
    ブラウザ側で切り替える処理は無い（MetaのA/BテストでURLごとに分けるため）。 */
 const HERO_VARIANTS = {
+  /* 2026-10-02 に静止画（hero-kubikata.webp）から動画へ差し替え（依頼者の指示）。
+     文字は動画に焼き込まれている。poster は1コマ目で、動画の読み込み前に出る */
   a: {
-    src: './images/hero-kubikata.webp',
+    video: './images/hero-video.mp4',
+    src: './images/hero-video-poster.webp',
     alt: 'このくらいの症状で行っていいのかな？長年の首・肩こりを本気でどうにかしたい…そんな方も、どちらもご相談ください。首・肩こりに特化した深層筋集中整体。首・肩だけでなく、肩甲骨・胸まわり・呼吸・食いしばりまで確認し、根本から整えます。Google口コミ★5／施術歴10年／国家資格保有。初回体験 通常価格7,500円（税込）のところ2,980円（税込）。'
   },
   c: {
@@ -156,7 +159,19 @@ const Headline = () => {
     className: "pt-12 bg-white"
   }, /*#__PURE__*/React.createElement("div", {
     className: "w-full"
-  }, /*#__PURE__*/React.createElement("img", {
+  }, hero.video ? /*#__PURE__*/React.createElement("video", {
+    src: hero.video,
+    poster: hero.src,
+    width: "940",
+    height: "1672",
+    autoPlay: true,
+    muted: true,
+    loop: true,
+    playsInline: true,
+    "aria-label": hero.alt,
+    "data-hero": "",
+    className: "w-full h-auto block"
+  }) : /*#__PURE__*/React.createElement("img", {
     src: hero.src,
     alt: hero.alt,
     width: "941",
@@ -172,16 +187,31 @@ const EmpathySection = () => {
   const ref = useFadeUp();
   return /*#__PURE__*/React.createElement("div", {
     ref: ref,
-    className: "fade-up w-full bg-[#FCF8F5]"
+    className: "fade-up w-full"
   }, /*#__PURE__*/React.createElement("img", {
-    src: "./images/empathy-new-image.webp",
-    width: 941,
-    height: 1672,
+    src: "./images/empathy-yoshizumi.webp",
+    width: 864,
+    height: 1690,
     loading: "lazy",
     decoding: "async",
-    alt: "こんなお悩みありませんか？ マッサージへ行っても数日で戻る／湿布ばかり貼っている／病院では異常なしと言われた／原因が分からない／もう歳だから仕方ないと思っている。もし一つでも当てはまるなら、原因は痛い場所ではないかもしれません。",
-    className: "w-full h-auto block drop-shadow-sm"
-  }));
+    alt: "こんなお悩みありませんか？ 01 何度も繰り返す肩こり・腰痛（その場はラクになるのに、数日で戻ってしまう）／02 朝から身体が重く、疲れが抜けない／03 姿勢の崩れが気になる（猫背・反り腰・骨盤のゆがみなど）／04 長時間座る・立つのがつらい／05 「なんとなく不調」が続いている。ひとつでも当てはまる方は、",
+    className: "w-full h-auto block"
+  }), /*#__PURE__*/React.createElement("p", {
+    /* 平成よしずみ整骨院のLPから転用した画像（2026-10-02、依頼者の指示）。
+       元画像の最終行は吉住の施術名「体幹（コア）からのケア」だったので切り落とし、
+       桜並木の「深層筋」に置き換えてHTMLで組んでいる。色は元画像から拾った */
+    className: "font-mincho font-bold text-center",
+    style: {
+      margin: 0,
+      padding: "2px 16px 34px",
+      background: "linear-gradient(#f4f8f9, #e3f0f9)",
+      color: "#3a3a3a",
+      fontSize: "17px",
+      letterSpacing: "0.08em"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: { color: "#4c88c8" }
+  }, "深層筋からのケア"), "がおすすめです！"));
 };
 
 /* ─── ③ 問題提起（画像） ─── */
@@ -189,14 +219,15 @@ const ProblemSection = () => {
   const ref = useFadeUp();
   return /*#__PURE__*/React.createElement("div", {
     ref: ref,
-    className: "fade-up w-full bg-[#FCF8F5]"
+    className: "fade-up w-full"
   }, /*#__PURE__*/React.createElement("img", {
-    src: "./images/problem-new-image.webp",
-    width: 940,
-    height: 1673,
+    /* 平成よしずみ整骨院のLPから転用（2026-10-02、依頼者の指示） */
+    src: "./images/problem-yoshizumi.webp",
+    width: 941,
+    height: 1672,
     loading: "lazy",
     decoding: "async",
-    alt: "そのまま放置しておくと… 1．集中力が続かない（仕事や勉強の効率が低下しミスが増える）／2．肩があがらなくなる・首が回らなくなる（服の着脱や運転など日常生活が不自由に）／3．痺れや痛みがとれない（慢性的な症状は改善に時間がかかる）／4．睡眠不足で体調を崩しやすくなる（疲れが取れず免疫力が低下）。つらい症状は早めのケアが大切です。",
+    alt: "そのまま放置しておくと… 慢性的な痛みが続き、改善しにくくなる／姿勢が崩れ、見た目が老けて見える／疲れやすくなり、日常生活の質が低下／自律神経が乱れ、不調が広がっていく／将来的に、大きな不調につながる。",
     className: "w-full h-auto block drop-shadow-sm"
   }));
 };
@@ -365,6 +396,13 @@ const FeatureSection = () => {
     desc: "桜並木駅から徒歩1分のアクセス。提携駐車場（タイムズ桜並木駅前）をご利用いただけます。料金は当院が負担いたしますので、お車の方もスムーズに施術を受けていただけます。",
     mediaSrc: "./images/parking.webp",
     isVideo: false
+  }, {
+    /* 2026-10-02 に追加して4つの理由に（依頼者の指示。吉住LPの「4つの理由」に揃えた） */
+    num: "04",
+    title: /*#__PURE__*/React.createElement(React.Fragment, null, "お子さま連れでも安心", /*#__PURE__*/React.createElement("br", null), "託児スペースあり"),
+    desc: "看護師免許を持つ女性スタッフがお子さまを見守ります。キッズスペースやおもちゃもあるので、子育て中の方も落ち着いて施術を受けていただけます。",
+    mediaSrc: "./images/childcare.webp",
+    isVideo: false
   }];
   return /*#__PURE__*/React.createElement("div", {
     ref: ref,
@@ -373,11 +411,11 @@ const FeatureSection = () => {
     className: "px-5 pt-14 pb-8 text-center"
   }, /*#__PURE__*/React.createElement("span", {
     className: "text-skin-rose text-[10px] tracking-[0.3em] font-bold block mb-4"
-  }, "3 REASONS"), /*#__PURE__*/React.createElement("h2", {
+  }, "4 REASONS"), /*#__PURE__*/React.createElement("h2", {
     className: "font-mincho text-2xl font-bold text-skin-dark leading-relaxed"
   }, "当院が選ばれる", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", {
     className: "text-skin-rose"
-  }, "3つの理由"))), features.map((f, i) => /*#__PURE__*/React.createElement("div", {
+  }, "4つの理由"))), features.map((f, i) => /*#__PURE__*/React.createElement("div", {
     key: i,
     className: "w-full"
   }, /*#__PURE__*/React.createElement("div", {
@@ -894,7 +932,7 @@ const App = () => {
   }, []);
   return /*#__PURE__*/React.createElement("div", {
     className: "w-full max-w-md mx-auto shadow-xl bg-white min-h-screen relative my-0 md:my-8"
-  }, /*#__PURE__*/React.createElement(StickyHeader, null), /*#__PURE__*/React.createElement(Headline, null), /*#__PURE__*/React.createElement(TopVoicesSection, null), /*#__PURE__*/React.createElement(EmpathySection, null), /*#__PURE__*/React.createElement(ProblemSection, null), /*#__PURE__*/React.createElement(CauseSection, null), /*#__PURE__*/React.createElement(SolutionSection, null), /*#__PURE__*/React.createElement(BenefitSection, null), /*#__PURE__*/React.createElement(ClinicDifferenceSection, null), /*#__PURE__*/React.createElement(FeatureSection, null), /*#__PURE__*/React.createElement(ComparisonSection, null), /*#__PURE__*/React.createElement(ReviewsSection, null), /*#__PURE__*/React.createElement(QASection, null), /*#__PURE__*/React.createElement(FinalCTA, null), /*#__PURE__*/React.createElement(Footer, null), /*#__PURE__*/React.createElement(StickyCTA, null));
+  }, /*#__PURE__*/React.createElement(StickyHeader, null), /*#__PURE__*/React.createElement(Headline, null), /*#__PURE__*/React.createElement(TopVoicesSection, null), /*#__PURE__*/React.createElement(EmpathySection, null), /*#__PURE__*/React.createElement(ProblemSection, null), /*#__PURE__*/React.createElement(FeatureSection, null), /*#__PURE__*/React.createElement(CauseSection, null), /*#__PURE__*/React.createElement(SolutionSection, null), /*#__PURE__*/React.createElement(BenefitSection, null), /*#__PURE__*/React.createElement(ClinicDifferenceSection, null), /*#__PURE__*/React.createElement(ComparisonSection, null), /*#__PURE__*/React.createElement(ReviewsSection, null), /*#__PURE__*/React.createElement(QASection, null), /*#__PURE__*/React.createElement(FinalCTA, null), /*#__PURE__*/React.createElement(Footer, null), /*#__PURE__*/React.createElement(StickyCTA, null));
 };
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(/*#__PURE__*/React.createElement(App, null));

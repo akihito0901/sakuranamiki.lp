@@ -70,7 +70,7 @@ GitHubに push すると Vercel も Cloudflare も自動で更新される。
 
 | | URL | ヒーロー |
 |---|---|---|
-| 本番（広告） | <https://sakuranamiki-lp.vercel.app/> | `hero-kubikata.webp`（首・肩こり特化。2026-09-26に `hero-shinsokin.webp` から差し替え） |
+| 本番（広告） | <https://sakuranamiki-lp.vercel.app/> | `hero-video.mp4`（動画。poster は `hero-video-poster.webp`。2026-10-02に `hero-kubikata.webp` から差し替え） |
 | 控え | <https://sakuranamiki-lp.vercel.app/c.html> | `hero-empathy.webp`（共感訴求） |
 | 確認用 | <https://sakuranamiki-lp.pages.dev/> ／ `/c` | 同上 |
 

@@ -131,7 +131,7 @@ const kb = (s) => (Buffer.byteLength(s, 'utf8') / 1024).toFixed(1) + 'KB';
 console.log('index.html (ヒーローA): %s', kb(htmlA));
 console.log('c.html     (ヒーローC): %s  ※noindex', kb(htmlC));
 for (const [name, h] of [['index.html', htmlA], ['c.html', htmlC]]) {
-  // 実際に描画されるヒーロー（data-hero が付いた img）を確認用に出す
-  const m = h.match(/<img src="\.\/images\/(hero-[a-z-]+\.webp)"[^>]*data-hero/);
+  // 実際に描画されるヒーロー（data-hero が付いた img / video）を確認用に出す
+  const m = h.match(/<(?:img|video) src="\.\/images\/(hero-[a-z-]+\.(?:webp|mp4))"[^>]*data-hero/);
   console.log('  ' + name + ' のヒーロー: ' + (m ? m[1] : '不明'));
 }
