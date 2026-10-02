@@ -4,15 +4,15 @@ module.exports = Object.assign({content:['./index.html','./app.js']}, {
                 extend: {
                     colors: {
                         skin: {
-                            cream: '#fff8f5',
-                            peach: '#fce8df',
-                            blush: '#f5cec7',
-                            pink: '#e8a5a0',
-                            rose: '#d4847e',
-                            muted: '#c09090',
-                            dark: '#6b4545',
-                            text: '#5a4040',
-                            gray: '#8a7070',
+                            cream: '#f7fbfe',
+                            peach: '#b5d5e2',
+                            blush: '#9dc6d8',
+                            pink: '#7ca8be',
+                            rose: '#5a8ba3',
+                            muted: '#4a7c96',
+                            dark: '#2c4a5a',
+                            text: '#1e3a47',
+                            gray: '#5f7682',
                         }
                     },
                     fontFamily: {
