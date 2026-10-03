@@ -127,16 +127,8 @@ const StickyHeader = () => /*#__PURE__*/React.createElement("div", {
   width: "726",
   height: "161",
   className: "h-8 w-auto"
-})), /*#__PURE__*/React.createElement("a", {
-  href: "https://maps.app.goo.gl/SVMYspHp6BMLiEwa7",
-  target: "_blank",
-  rel: "noopener noreferrer",
-  onClick: () => window.trackMap(),
-  className: "flex items-center gap-1.5 bg-skin-cream text-skin-dark text-xs font-bold px-4 py-2 rounded-full shadow-sm active:scale-95 transition-all border border-skin-blush/50"
-}, /*#__PURE__*/React.createElement(Icon, {
-    name: "location-dot",
-    className: "text-skin-rose"
-  }), /*#__PURE__*/React.createElement("span", null, "Googleマップで確認"))));
+}))));
+/* 右上の「Googleマップで確認」ボタンは 2026-10-03 に削除（依頼者の指示） */
 
 /* ─── ① ヘッドライン（A/Bテスト対象） ─── */
 /* a と c の2パターン。どちらを出すかはページごとに固定されている。
