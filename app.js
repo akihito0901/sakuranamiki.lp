@@ -176,7 +176,11 @@ const Headline = () => {
     "data-hero": "",
     decoding: "async",
     className: "w-full h-auto block"
-  })));
+  })), /*#__PURE__*/React.createElement("div", {
+    /* ヒーロー直下のLINEボタン（2026-10-05、依頼者の指示）。
+       styles.css は再ビルドできないので、余白は style で付けている */
+    style: { padding: "20px 0 24px" }
+  }, /*#__PURE__*/React.createElement(LineCTA, null)));
 };
 /* ─── ② 悩みの共感 ─── */
 const EmpathySection = () => {
