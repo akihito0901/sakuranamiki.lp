@@ -703,6 +703,7 @@ const ReviewsSection = () => {
        ヘッダー右上にあったもの（10/3に削除）を口コミの評価の下に移した。見た目も同じ。
        計測は lp.js がリンク先（maps.app.goo.gl）を見て FindLocation を送る */
     className: "max-w-sm mx-auto",
+    "data-cta-map": "",
     style: { marginTop: "18px" }
   }, /*#__PURE__*/React.createElement("a", {
     /* 2026-10-06：Google公式風の白いボタン。LINEボタンと同じ組み立て（上に小見出し・中央にロゴと文言・下に注意書き）。

@@ -39,11 +39,12 @@
     for (var j = 0; j < fadeTargets.length; j++) fadeObs.observe(fadeTargets[j]);
 
     /* ── LINEボタンが画面に入ったら一度だけ animate ── */
-    var ctas = document.querySelectorAll('[data-cta-line]');
+    /* Googleマップのボタン（data-cta-map）も同じタイミングでゆらす。光る色は別（index.html の map-cta-glow） */
+    var ctas = document.querySelectorAll('[data-cta-line], [data-cta-map]');
     var ctaObs = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (!e.isIntersecting) return;
-        e.target.classList.add('cta-line-animated');
+        e.target.classList.add(e.target.hasAttribute('data-cta-map') ? 'map-cta-animated' : 'cta-line-animated');
         ctaObs.unobserve(e.target);
       });
     }, { threshold: 0.6 });
