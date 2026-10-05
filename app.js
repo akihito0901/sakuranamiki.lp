@@ -698,7 +698,21 @@ const ReviewsSection = () => {
   }), /*#__PURE__*/React.createElement(Icon, {
     name: "star",
     className: ""
-  })))), /*#__PURE__*/React.createElement("div", {
+  }))), /*#__PURE__*/React.createElement("div", {
+    /* Googleマップへのボタン（2026-10-05、依頼者の指示）。
+       ヘッダー右上にあったもの（10/3に削除）を口コミの評価の下に移した。見た目も同じ。
+       計測は lp.js がリンク先（maps.app.goo.gl）を見て FindLocation を送る */
+    className: "flex justify-center",
+    style: { marginTop: "16px" }
+  }, /*#__PURE__*/React.createElement("a", {
+    href: "https://maps.app.goo.gl/SVMYspHp6BMLiEwa7",
+    target: "_blank",
+    rel: "noopener noreferrer",
+    className: "flex items-center gap-1.5 bg-skin-cream text-skin-dark text-xs font-bold px-4 py-2 rounded-full shadow-sm active:scale-95 transition-all border border-skin-blush/50"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "location-dot",
+    className: "text-skin-rose"
+  }), /*#__PURE__*/React.createElement("span", null, "Googleマップで口コミをすべて見る")))), /*#__PURE__*/React.createElement("div", {
     className: "space-y-0 max-w-sm mx-auto"
   }, data.map((d, i) => /*#__PURE__*/React.createElement("div", {
     key: i,
@@ -756,7 +770,8 @@ const QASection = () => {
     a: "症状や個人差がありますが、多くの方が3〜5回の施術で大きな変化を実感されています。初回のカウンセリングで、おおよその回数をお伝えします。"
   }, {
     q: "料金はいくらですか？",
-    a: "通常は\n・深層筋集中整体＋初診料 → 7,500円\n\nですが…\n\nお試し体験 2,980円で受けていただけます。\n\n2回目以降は\n・保険施術：400〜800円程度\n・深層筋集中整体：5,500円\n\n※通いやすいプランもご用意していますが、\n無理な勧誘は一切ありませんのでご安心ください。\n\n※初回体験時に、お身体の状態に合わせた最適な通い方をわかりやすくお伝えします！"
+    /* 2026-10-05 に差し替え（依頼者の指示）。旧：保険400〜800円・深層筋5,500円を明記していた */
+    a: "初回は2,980円（税込）です。この金額以外の費用はかかりません。通常は7,500円（初診料＋施術料）ですが、初めての方限定の体験価格です。\n\n2回目以降、保険を使う場合の窓口負担は700〜1,100円です（負担割合により異なります）。深層筋集中整体（自費）の料金や通い方は、初回の施術後にご説明します。その場でお決めいただく必要はありません。"
   }, {
     q: "どれくらいの頻度で通院したらいいですか？",
     a: "最初は週1〜2回のペースをおすすめしています。改善に伴い、徐々に間隔を空けていきます。"
