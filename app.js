@@ -705,35 +705,39 @@ const ReviewsSection = () => {
     className: "max-w-sm mx-auto",
     style: { marginTop: "18px" }
   }, /*#__PURE__*/React.createElement("a", {
-    /* 2026-10-06：小さいラベル風だと「ボタン感がない」と言われたので、
-       幅いっぱいの青いボタンにした（色・余白は styles.css に無いので style で指定） */
+    /* 2026-10-06：Google公式風の白いボタン。LINEボタンと同じ組み立て（上に小見出し・中央にロゴと文言・下に注意書き）。
+       丸い飾りは使わない／文字は中央揃え（依頼者の指示）。色・余白は styles.css に無いので style で指定 */
     href: "https://maps.app.goo.gl/SVMYspHp6BMLiEwa7",
     target: "_blank",
     rel: "noopener noreferrer",
-    className: "flex items-center justify-between font-bold text-white active:scale-[0.97] transition-all",
+    className: "block w-full text-center font-bold active:scale-[0.97] transition-all",
     style: {
-      background: "linear-gradient(135deg, #4c8df6, #2f6fdb)",
-      borderRadius: "14px",
-      padding: "16px 18px",
-      boxShadow: "0 8px 22px rgba(47,111,219,0.38)"
+      background: "#ffffff",
+      border: "1.5px solid #dadce0",
+      borderRadius: "12px",
+      padding: "12px 16px 10px",
+      boxShadow: "0 6px 18px rgba(60,64,67,0.16)",
+      color: "#202124"
     }
   }, /*#__PURE__*/React.createElement("span", {
-    className: "flex items-center gap-2"
+    style: { display: "block", fontSize: "11px", color: "#5f6368", letterSpacing: "0.12em" }
+  }, "＼ 口コミ評価 ★5.0 ／"), /*#__PURE__*/React.createElement("span", {
+    className: "flex items-center justify-center gap-2",
+    style: { marginTop: "6px" }
   }, /*#__PURE__*/React.createElement("span", {
-    className: "flex items-center justify-center",
-    style: { width: "34px", height: "34px", borderRadius: "50%", background: "#fff", color: "#ea4335", fontSize: "18px" }
+    style: { color: "#ea4335", fontSize: "18px", lineHeight: 1 }
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "location-dot",
     className: ""
-  })), /*#__PURE__*/React.createElement("span", {
-    style: { fontSize: "16px", lineHeight: 1.35, textAlign: "left" }
-  }, "Googleマップで", /*#__PURE__*/React.createElement("br", null), "口コミをすべて見る")), /*#__PURE__*/React.createElement(Icon, {
-    name: "caret-right",
-    className: ""
-  })), /*#__PURE__*/React.createElement("p", {
-    className: "text-center text-skin-text/50",
-    style: { fontSize: "11px", marginTop: "8px" }
-  }, "※タップするとGoogleマップが開きます"))), /*#__PURE__*/React.createElement("div", {
+  })), /*#__PURE__*/React.createElement("img", {
+    src: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
+    alt: "Google",
+    style: { height: "20px", width: "auto" }
+  }), /*#__PURE__*/React.createElement("span", {
+    style: { fontSize: "17px" }
+  }, "マップで口コミを見る")), /*#__PURE__*/React.createElement("span", {
+    style: { display: "block", fontSize: "10px", color: "#80868b", marginTop: "4px", fontWeight: 400 }
+  }, "※タップするとGoogleマップが開きます")))), /*#__PURE__*/React.createElement("div", {
     className: "space-y-0 max-w-sm mx-auto"
   }, data.map((d, i) => /*#__PURE__*/React.createElement("div", {
     key: i,
