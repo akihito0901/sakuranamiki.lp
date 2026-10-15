@@ -140,9 +140,9 @@ const HERO_VARIANTS = {
      画像は1日キャッシュなので、差し替えはファイル名ごと変えている。
      文字は動画に焼き込まれている。poster は1コマ目で、動画の読み込み前に出る */
   a: {
-    video: './images/hero-katakoshi6.mp4',
-    src: './images/hero-katakoshi6-poster.webp',
-    alt: '肩こり・腰痛がスッと消える。深層筋集中整体。体の芯・土台から整え、痛みの出にくい体へ。初めての方も安心：臨床経験10年以上／口コミ評価★5／院長の担当制／明朗会計・追加料金なし／押し売りなし／痛みの少ないやさしい施術。'
+    video: './images/hero-katakoshi7.mp4',
+    src: './images/hero-katakoshi7-poster.webp',
+    alt: '肩こり・腰痛がスッと消える。深層筋集中整体。体の芯・土台から整え、痛みの出にくい体へ。初めての方も安心：臨床経験10年以上／口コミ評価★5／院長の担当制／明朗会計・追加料金なし／押し売りなし／痛みの少ないやさしい施術。初めての方も安心してご来院ください。'
   },
   c: {
     src: './images/hero-empathy.webp',
@@ -204,7 +204,31 @@ const Headline = () => {
     style: { color: "#1b4a96", fontSize: "22px", fontWeight: 700 }
   }, "→"), /*#__PURE__*/React.createElement("span", {
     style: { color: "#e11d48", fontWeight: 900, lineHeight: 1, whiteSpace: "nowrap" }
-  }, /*#__PURE__*/React.createElement("span", { style: { fontSize: "50px", letterSpacing: "-0.02em" } }, "2,980"), /*#__PURE__*/React.createElement("span", { style: { fontSize: "22px" } }, "円"), /*#__PURE__*/React.createElement("span", { style: { fontSize: "10px", marginLeft: "2px" } }, "(税込)")))), /*#__PURE__*/React.createElement(LineCTA, null), /*#__PURE__*/React.createElement("a", {
+  }, /*#__PURE__*/React.createElement("span", { style: { fontSize: "50px", letterSpacing: "-0.02em" } }, "2,980"), /*#__PURE__*/React.createElement("span", { style: { fontSize: "22px" } }, "円"), /*#__PURE__*/React.createElement("span", { style: { fontSize: "10px", marginLeft: "2px" } }, "(税込)")))), /*#__PURE__*/React.createElement("div", {
+    /* 2026-10-15：参考画像にあった「駅チカ徒歩1分／完全予約制 待ち時間なし」の帯（依頼者の指示）。CTAの前に置く */
+    className: "flex items-center",
+    style: { margin: "0 16px 16px", padding: "10px 6px", border: "1.5px solid #c9d6ea", borderRadius: "12px", background: "#fff" }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center justify-center",
+    style: { flex: 1, gap: "8px" }
+  }, /*#__PURE__*/React.createElement("svg", {
+    viewBox: "0 0 48 48", width: "30", height: "30", fill: "none", stroke: "#e11d48", strokeWidth: "3.5", strokeLinejoin: "round", strokeLinecap: "round"
+  }, /*#__PURE__*/React.createElement("rect", { x: "9", y: "5", width: "30", height: "32", rx: "7" }), /*#__PURE__*/React.createElement("path", { d: "M9 22h30M17 43l4-6M31 43l-4-6" }), /*#__PURE__*/React.createElement("circle", { cx: "17", cy: "30", r: "1.5", fill: "#e11d48" }), /*#__PURE__*/React.createElement("circle", { cx: "31", cy: "30", r: "1.5", fill: "#e11d48" })), /*#__PURE__*/React.createElement("span", {
+    style: { fontSize: "12px", lineHeight: 1.4, color: "#1b4a96", fontWeight: 700 }
+  }, "西鉄 桜並木駅から", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", {
+    style: { fontSize: "17px", fontWeight: 900, borderBottom: "5px solid #fde68a", lineHeight: 1.1 }
+  }, "徒歩1分"))), /*#__PURE__*/React.createElement("div", {
+    style: { width: "1px", alignSelf: "stretch", background: "#d5dbe6" }
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center justify-center",
+    style: { flex: 1, gap: "8px" }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: { color: "#e11d48", fontSize: "26px", lineHeight: 1 }
+  }, /*#__PURE__*/React.createElement(Icon, { name: "calendar-check", className: "" })), /*#__PURE__*/React.createElement("span", {
+    style: { fontSize: "15px", lineHeight: 1.4, color: "#1b4a96", fontWeight: 900 }
+  }, "完全予約制", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", {
+    style: { borderBottom: "5px solid #fde68a", lineHeight: 1.1 }
+  }, "待ち時間なし")))), /*#__PURE__*/React.createElement(LineCTA, null), /*#__PURE__*/React.createElement("a", {
     href: "tel:070-5530-6656",
     onClick: () => window.trackTel(),
     className: "block text-center font-bold active:scale-[0.97] transition-all",
