@@ -140,9 +140,9 @@ const HERO_VARIANTS = {
      画像は1日キャッシュなので、差し替えはファイル名ごと変えている。
      文字は動画に焼き込まれている。poster は1コマ目で、動画の読み込み前に出る */
   a: {
-    video: './images/hero-katakoshi.mp4',
-    src: './images/hero-katakoshi-poster.webp',
-    alt: '肩こり・腰痛がスッと消える。深層筋集中整体。体の芯・土台から整え、痛みの出にくい体へ。10年の経験／国家資格保有／口コミ評価★5。初回限定 通常7,500円（税込）のところ2,980円（税込）。清潔で落ち着いた院内で、安心して施術を受けられます。'
+    video: './images/hero-katakoshi6.mp4',
+    src: './images/hero-katakoshi6-poster.webp',
+    alt: '肩こり・腰痛がスッと消える。深層筋集中整体。体の芯・土台から整え、痛みの出にくい体へ。初めての方も安心：臨床経験10年以上／口コミ評価★5／院長の担当制／明朗会計・追加料金なし／押し売りなし／痛みの少ないやさしい施術。'
   },
   c: {
     src: './images/hero-empathy.webp',
@@ -180,7 +180,46 @@ const Headline = () => {
     /* ヒーロー直下のLINEボタン（2026-10-05、依頼者の指示）。
        styles.css は再ビルドできないので、余白は style で付けている */
     style: { padding: "20px 0 24px" }
-  }, /*#__PURE__*/React.createElement(LineCTA, null)));
+  }, /*#__PURE__*/React.createElement("div", {
+    /* 2026-10-15：ヒーロー動画から値段を外し（丸を6個に増やすため）、直下のここに移した（依頼者の指示）。
+       styles.css は再ビルドできないので、色・余白は style で指定 */
+    style: {
+      margin: "0 16px 16px",
+      padding: "14px 16px 12px",
+      border: "1.5px solid #c9d6ea",
+      borderRadius: "12px",
+      background: "#ffffff",
+      position: "relative"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: { position: "absolute", left: 0, top: 0, background: "#1b4a96", color: "#fff", fontSize: "12px", fontWeight: 700, padding: "3px 14px", borderRadius: "10px 0 10px 0" }
+  }, "初回限定"), /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center justify-center",
+    style: { gap: "12px", marginTop: "14px" }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: { color: "#555", fontSize: "12px", lineHeight: 1.3, textAlign: "center" }
+  }, "通常", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", {
+    style: { fontSize: "20px", fontWeight: 700, textDecoration: "line-through", textDecorationColor: "#999" }
+  }, "7,500円"), /*#__PURE__*/React.createElement("span", { style: { fontSize: "9px" } }, "(税込)")), /*#__PURE__*/React.createElement("span", {
+    style: { color: "#1b4a96", fontSize: "22px", fontWeight: 700 }
+  }, "→"), /*#__PURE__*/React.createElement("span", {
+    style: { color: "#e11d48", fontWeight: 900, lineHeight: 1, whiteSpace: "nowrap" }
+  }, /*#__PURE__*/React.createElement("span", { style: { fontSize: "50px", letterSpacing: "-0.02em" } }, "2,980"), /*#__PURE__*/React.createElement("span", { style: { fontSize: "22px" } }, "円"), /*#__PURE__*/React.createElement("span", { style: { fontSize: "10px", marginLeft: "2px" } }, "(税込)")))), /*#__PURE__*/React.createElement(LineCTA, null), /*#__PURE__*/React.createElement("a", {
+    href: "tel:070-5530-6656",
+    onClick: () => window.trackTel(),
+    className: "block text-center font-bold active:scale-[0.97] transition-all",
+    style: {
+      margin: "12px 16px 0",
+      padding: "13px 16px",
+      borderRadius: "12px",
+      background: "#1b4a96",
+      color: "#fff",
+      fontSize: "15px"
+    }
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "phone-flip",
+    className: "mr-2"
+  }), "今すぐ電話で来店予約")));
 };
 /* ─── ② 悩みの共感 ─── */
 const EmpathySection = () => {
