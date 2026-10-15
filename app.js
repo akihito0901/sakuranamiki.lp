@@ -140,8 +140,8 @@ const HERO_VARIANTS = {
      画像は1日キャッシュなので、差し替えはファイル名ごと変えている。
      文字は動画に焼き込まれている。poster は1コマ目で、動画の読み込み前に出る */
   a: {
-    video: './images/hero-katakoshi7.mp4',
-    src: './images/hero-katakoshi7-poster.webp',
+    video: './images/hero-katakoshi8.mp4',
+    src: './images/hero-katakoshi8-poster.webp',
     alt: '肩こり・腰痛がスッと消える。深層筋集中整体。体の芯・土台から整え、痛みの出にくい体へ。初めての方も安心：臨床経験10年以上／口コミ評価★5／院長の担当制／明朗会計・追加料金なし／押し売りなし／痛みの少ないやさしい施術。初めての方も安心してご来院ください。'
   },
   c: {
