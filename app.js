@@ -438,8 +438,8 @@ const FeatureSection = () => {
     isVideo: false
   }, {
     num: "03",
-    title: /*#__PURE__*/React.createElement(React.Fragment, null, "通いやすい環境", /*#__PURE__*/React.createElement("br", null), "提携駐車場あり・駅チカ1分"),
-    desc: "桜並木駅から徒歩1分のアクセス。提携駐車場（タイムズ桜並木駅前）をご利用いただけます。料金は当院が負担いたしますので、お車の方もスムーズに施術を受けていただけます。",
+    title: /*#__PURE__*/React.createElement(React.Fragment, null, "通いやすい環境", /*#__PURE__*/React.createElement("br", null), "駐車場あり・駅チカ1分"),
+    desc: "桜並木駅から徒歩1分のアクセス。院の正面にコインパーキング（タイムズ桜並木駅前）があります。料金は当院が負担いたしますので、お車の方もスムーズに施術を受けていただけます。",
     mediaSrc: "./images/parking.webp",
     isVideo: false
   }, {
@@ -1014,7 +1014,7 @@ const FinalCTA = () => {
     className: "text-[11px] text-white/50"
   }, "070-5530-6656")), /*#__PURE__*/React.createElement("p", {
     className: "mt-5 text-center text-[10px] leading-relaxed text-white/40"
-  }, "受付 10:00〜14:00 / 15:00〜20:00（月〜土・祝）\u3000日曜休診", /*#__PURE__*/React.createElement("br", null), "提携駐車場の料金は当院が負担します")));
+  }, "受付 10:00〜14:00 / 15:00〜20:00（月〜土・祝）\u3000日曜休診", /*#__PURE__*/React.createElement("br", null), "駐車代（施術時間分）は当院が負担します")));
 };
 
 /* ─── Footer ─── */
